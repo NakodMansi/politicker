@@ -9,7 +9,7 @@ export default function HeroBanner() {
     return (
         <div className="flex flex-col justify-center items-center gap-[78px] w-full text-center pt-[130px] px-4 pb-[115px] bg-[#383535] md:px-8 md:py-[60px] lg:px-[150px] lg:py-[140px]">
             <div className="flex flex-col items-center gap-[6px] self-stretch">
-                <h1 className="text-[4rem] leading-[3.5rem] md:text-[6rem] md:leading-[5rem] lg:text-[9rem] lg:leading-[8rem]">
+                <h1 className="text-[4rem] leading-[3.5rem] md:text-[6rem] md:leading-[5.5rem] lg:text-[9rem] lg:leading-[8rem]">
                     {
                         text.map((text, index) => (
                             <span style={{color: textColor[index]}} key={index}>{text}</span>
