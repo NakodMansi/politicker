@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 // const content = [
@@ -19,14 +21,28 @@ import Image from "next/image";
 //     <Image src="/chess5.svg" width={40} height={30} className= {`${index==12 ? "opacity-100":"opacity-0"}`} alt="chess image" />,
 //     "SAFE",                       
 // ]
+
 export default function Chessboard() {
+    const [windowWidth, setWindowWidth] = useState(0);
+
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        
+        handleResize();
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {window.removeEventListener("resize", handleResize)}
+
+    },[windowWidth]);
+
     return (
         <div className="w-full overflow-hidden bg-[#383535] flex justify-center">
 
-            <div className="grid grid-cols-5 w-[597px]">
+            <div className="grid w-[770px] md:w-[1023px] lg:w-full" style={{gridTemplateColumns: `${windowWidth<769? "repeat(5, minmax(30vw, 1fr))":windowWidth>770 && windowWidth<1024?"repeat(5, minmax(20vw, 1fr))":"repeat(5, minmax(20vw, 1fr))"}`}}>
                 {
                         [...Array(15)].map((_, index) => (
-                            <div className={`${index} flex justify-end items-end w-[119.46px] h-[119.46px] overflow-visible transform transition-transform duration-2000 preserve-3d backface-hidden hover:rotate-y-360 ${index%2==0? "bg-[#1E1E1E]":"bg-white"}`} key={index}>
+                            <div className={`flex justify-end items-end aspect-square overflow-visible transform transition-transform duration-2000 preserve-3d backface-hidden hover:rotate-y-360 ${index%2==0? "bg-[#1E1E1E]":"bg-white"}`} key={index}>
                                 
                             </div>
                         ))
