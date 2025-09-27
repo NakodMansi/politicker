@@ -3,7 +3,6 @@ import HomePage from "../componentsPages/HomePage";
 
 export default function Home() {
   return (
-        <HomePage />
-    
-  );
+    <HomePage />
+);
 }
