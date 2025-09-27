@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const data = ["Human rights committee", "Foreign affairs committee", "EU matters committee"];
 
@@ -58,7 +59,9 @@ export default function SendEmail() {
                 }
             </div>
             
-            <button className="w-[150px] bg-[#888] ml-4 text-[#FFF] md:hidden">Done</button>
+            <Link href="/thankYou">
+                <button className="w-[150px] bg-[#888] ml-4 text-[#FFF] md:hidden">Done</button>
+            </Link>
         </div>
     )
 }

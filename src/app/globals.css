@@ -28,3 +28,7 @@ body {
 .font-palanquin {
   font-family: var(--font-palanquin), sans-serif;
 }
+
+.font-oswald {
+  font-family: var(--font-oswald), sans-serif;
+}
