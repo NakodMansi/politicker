@@ -47,7 +47,7 @@ export default function Chessboard() {
         style={{
           gridTemplateColumns:
             windowWidth < 769
-              ? "repeat(5, minmax(30vw, 1fr))"
+              ? "repeat(5, minmax(10vw, 1fr))"
               : windowWidth > 770 && windowWidth < 1024
               ? "repeat(5, minmax(14vw, 1fr))"
               : "repeat(5, minmax(10vw, 1fr))",
@@ -71,7 +71,7 @@ export default function Chessboard() {
                 >
                   {/* Front */}
                   <div
-                    className={`absolute inset-0 flex justify-center items-center bg-white md:text-[1.5rem] md:text-[2rem] lg:text-[3.5rem]`}
+                    className={`absolute inset-0 flex justify-center items-center bg-white text-[1.2rem] md:text-[1.5rem] md:text-[2rem] lg:text-[3.5rem]`}
                     style={{ backfaceVisibility: "hidden" }}
                   >
                     {card.front}

@@ -14,10 +14,10 @@ export default function Header() {
                 </Link>
             </ul>
 
-            <p className="text-[2rem] md:text-[2.6rem] lg:text-[4.3rem] lg:leading-[4rem]">Politicker</p>
+            <p className="text-[2rem] md:text-[2.6rem] lg:text-[4.3rem] lg:leading-[3.7rem]">Politicker</p>
 
             <Link href="#">
-                <button className="py-2 px-4 bg-[#941010] md:text-[1.5rem] lg:text-[2.1rem]">send email</button>
+                <button className="py-2 px-4 bg-[#941010] md:text-[1.5rem] lg:text-[2.1rem] lg:leading-[2rem]">send email</button>
             </Link>
         </div>
     )

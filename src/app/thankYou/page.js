@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import ReadySection from "@/componentsPages/ReadySection";
 import Header from "@/componentsPages/Header";
+import Footer from "@/componentsPages/Footer";
 
 export default function ThankYou() {
 
@@ -24,6 +25,8 @@ export default function ThankYou() {
             </div>
 
             <ReadySection />
+
+            <Footer />
         </div>
     )
 }

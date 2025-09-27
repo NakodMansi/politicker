@@ -5,6 +5,7 @@ import Chessboard from "./Chessboard";
 import SelectEmail from "./SelectEmail";
 import PrepareEmail from "./PrepareEmail";
 import Header from "./Header";
+import Footer from "./Footer";
 
 export default function HomePage() {
     const goToSelectMail = useRef(null);
@@ -25,6 +26,7 @@ export default function HomePage() {
             <Chessboard />
             <SelectEmail reference = {goToSelectMail} goToPrepareMailFunc = {ScrollToPrepareMail}/>
             <PrepareEmail Reference = {goToPrepareMail} />
+            <Footer />
         </div>
     )
 } 

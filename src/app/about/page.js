@@ -1,4 +1,5 @@
 import Explanation from "@/componentsPages/Explanation";
+import Footer from "@/componentsPages/Footer";
 import Header from "@/componentsPages/Header";
 import MainContainer from "@/componentsPages/MainContainer";
 import ReadySection from "@/componentsPages/ReadySection";
@@ -15,6 +16,7 @@ export default function About() {
             <MainContainer />
             <SectionFour />
             <ReadySection />
+            <Footer />
         </div>
     )
 }

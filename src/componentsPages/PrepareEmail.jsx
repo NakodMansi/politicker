@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import ReadyImage from "../../public/ReadyImage.svg";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function PrepareEmail({Reference}) {
     const formDivCss = "flex flex-col items-start gap-1 self-stretch lg:gap-2 relative";
@@ -49,7 +50,7 @@ export default function PrepareEmail({Reference}) {
                         width={30} 
                         height={30} 
                         alt="Frame Icon" 
-                        className="absolute top-[7px] right-2 md:top-[15px] md:right-4" 
+                        className="absolute top-[7px] right-2 md:top-[7px] lg:right-4" 
                         onMouseOver={() => {setShowNameMsg(true)}}
                         onMouseOut= {() => {setShowNameMsg(false)}}
                     />
@@ -84,7 +85,7 @@ export default function PrepareEmail({Reference}) {
                             width={30} 
                             height={30} 
                             alt="Frame Icon" 
-                            className="absolute top-[7px] right-2 md:top-[15px] md:right-4" 
+                            className="absolute top-[7px] right-2 md:top-[7px] lg:right-4" 
                             onMouseOver= {() => {setShowEmailMsg(true)}}
                             onMouseOut= {() => {setShowEmailMsg(false)}}
                         />
@@ -107,7 +108,9 @@ export default function PrepareEmail({Reference}) {
                     <label className={labelCss} >Email</label>
                 </div>
 
-                <button type="submit" name="submitBtn" className={btnCss}>finalize emails</button>
+                <Link href='/mail' className="w-full">
+                    <button type="submit" name="submitBtn" className={btnCss}>finalize emails</button>
+                </Link>
             </form>
         </div>
     )
