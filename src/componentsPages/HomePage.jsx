@@ -4,6 +4,7 @@ import HeroBanner from "./HeroBanner";
 import Chessboard from "./Chessboard";
 import SelectEmail from "./SelectEmail";
 import PrepareEmail from "./PrepareEmail";
+import Header from "./Header";
 
 export default function HomePage() {
     const goToSelectMail = useRef(null);
@@ -19,6 +20,7 @@ export default function HomePage() {
 
     return (
         <div className="bg-[#1E1E1E]">
+            <Header />
             <HeroBanner goToSelectMailFunc = {Scroll}/>
             <Chessboard />
             <SelectEmail reference = {goToSelectMail} goToPrepareMailFunc = {ScrollToPrepareMail}/>

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Header from "@/componentsPages/Header";
 
 export default function ContactUs() {
     const formDivCss = "flex flex-col items-start gap-1 self-stretch md:gap-2 relative";
@@ -26,6 +27,8 @@ export default function ContactUs() {
 
     return (
         <div className="flex flex-col items-start gap-4 flex-1 w-full px-4 pb-4 md:flex-row md:py-10 md:px-8 md:gap-8 lg:py-[100px] lg:px-[100px]" style={{ background: "linear-gradient(180deg, #1E1E1E 27.87%, #5F1717 98.29%)" }}>  
+            <Header />
+            
             <div className="p-5 flex justify-center items-center bg-[#FFF] self-stretch md:flex-col md:justify-start md:text-left md:p-6 lg:gap-[60px]">
                 <p className="text-[#000] text-[2.6rem] leading-[2.6rem] md:text-[4rem] md:leading-[4rem] self-stretch">contact us</p>
                 

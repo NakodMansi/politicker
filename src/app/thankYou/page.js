@@ -1,12 +1,15 @@
 import React from "react";
 import Image from "next/image";
 import ReadySection from "@/componentsPages/ReadySection";
+import Header from "@/componentsPages/Header";
 
 export default function ThankYou() {
 
 
     return (
         <div className="flex flex-col items-start w-full bg-[#1E1E1E]">
+            <Header />
+            
             <div className="flex flex-col items-center justify-center self-stretch py-3 px-4 md:py-11 lg:pt-[60px] lg:pb-0">
                 <Image 
                     src="/thankYou.svg" 
