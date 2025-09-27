@@ -28,9 +28,11 @@ export default function SendEmail() {
         if (savedStep) setStep(parseInt(savedStep));
     }, []);
 
-    const sendEmail = (index) => {
-        const { email1, email2, subject, body } = content[index];
-        window.open(`https://mail.google.com/?view=cm&fs=1&bcc=${email1},${email2}&su=${subject}&body=${body}`);
+    function sendEmail() {
+        const { email1, email2, subject, body } = content[0];
+        const formattedBody = body.replace(/\n/g, "%0A");
+
+        window.open(`https://mail.google.com/?view=cm&fs=1&bcc=${email1},${email2}&su=${subject}&body=${formattedBody}`);
 
         const nextStep = step + 1;
         setStep(nextStep);
@@ -99,7 +101,7 @@ export default function SendEmail() {
         </div>
 
         <Link href="/thankYou">
-            <button className="w-[150px] bg-[#888] ml-4 text-white md:hidden">Done</button>
+            <button className={`w-[150px] ml-4 text-white md:hidden ${step>3?"bg-[#266247]":"bg-[#888] "}`}>Done</button>
         </Link>
     </div>
   );

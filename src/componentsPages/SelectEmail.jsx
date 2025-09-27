@@ -6,10 +6,12 @@ const data = [
     {
         image: "/englishTemplate.png",
         text: "English",
+        docFile: "/docs/GazaChildrenAid(German).pdf"
     },
     {
         image: "/germanTemplate.png",
         text: "German",
+        docFile: "docs/GazaChildrenAid(English).pdf"
     },
 ];
 
@@ -31,10 +33,11 @@ export default function SelectEmail({reference, goToPrepareMailFunc}) {
         setClickedSecondButton(1);
         setFirstButtonClick(0);
     }
-
-    // const btnCss = "py-[14px] px-4 text-[#FFF] text-[2rem] leading-[2.5rem] w-[275px] md:w-[250px] lg:p-4 md:w-[236px] lg:text-[2rem]";
-
-        const btnCss = "py-2 px-3 md:py-3 md:px-[30px] w-fit text-[#FFF] md:text-[1.5rem] md:leading-[1.5rem] md:w-[200px] lg:text-[2.5rem] lg:w-[350px] lg:leading-[2.5rem]";
+    
+    function openDoc(url) {
+        window.open(url)
+    }
+    const btnCss = "py-2 px-3 md:py-3 md:px-[30px] w-fit text-[#FFF] md:text-[1.5rem] md:leading-[1.5rem] md:w-[200px] lg:text-[2.5rem] lg:w-[350px] lg:leading-[2.5rem]";
 
     return (
         <div ref={reference} className="bg-[#FFF] flex flex-col gap-[30px] items-center text-center py-[60px] px-6 w-full md:px-8 md:gap-[30px] lg:p-[70px]">
@@ -54,7 +57,15 @@ export default function SelectEmail({reference, goToPrepareMailFunc}) {
                         {
                             data.map((item, index) => (
                                 <div key={index} className="flex flex-col items-center gap-2 md:flex-col-reverse md:gap-1 lg:gap-2">
-                                    <Image src={item.image} width={100} height={100} className="md:w-[224px] transition duration-500" alt="templates" style={{boxShadow: clickedFirstButton==1?"7.58px 7.58px 2.316px 0 #266247":"7.58px 7.58px 2.316px 0 #994242"}} />
+                                    <Image 
+                                        src={item.image} 
+                                        width={100} 
+                                        height={100} 
+                                        className="w-[40vw] md:w-[224px] transition duration-500" 
+                                        alt="templates" 
+                                        style={{boxShadow: clickedFirstButton==1?"7.58px 7.58px 2.316px 0 #266247":"7.58px 7.58px 2.316px 0 #994242"}} 
+                                        onClick={() => openDoc(item.docFile)}
+                                    />
 
                                     <p className="text-[#A3A3A3] font-palanquin font-medium lg:text-[1.5rem]">{item.text}</p>
                                 </div>

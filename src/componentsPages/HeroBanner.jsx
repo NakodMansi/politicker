@@ -7,9 +7,9 @@ export default function HeroBanner({goToSelectMailFunc}) {
     const btnCss = "py-2 px-3 md:py-3 md:px-[30px] w-fit bg-[#941010] text-[#FFF] md:text-[1.5rem] md:leading-[1.5rem] lg:text-[2.5rem] lg:leading-[1.5rem]";
 
     return (
-        <div className="flex flex-col justify-center items-center gap-[40px] md:gap-[78px] w-full text-center bg-[#383535] px-4 py-8 md:gap-[50px] md:py-[60px] md:px-4 lg:px-8 lg:py-[60px]">
+        <div className="flex flex-col justify-center items-center gap-[40px] md:gap-[78px] w-full text-center px-4 py-8 md:gap-[50px] md:py-[60px] md:px-4 lg:px-8 lg:py-[60px]">
             <div className="flex flex-col items-center gap-[6px] self-stretch">
-                <h1 className="text-[3rem] leading-[2.9rem] md:text-[4rem] md:leading-[3.5rem] lg:text-[6rem] lg:leading-[5.5rem]">
+                <h1 className="text-[4.5rem] leading-[4.5rem] md:text-[4rem] md:leading-[3.5rem] lg:text-[6rem] lg:leading-[5.5rem]">
                     {
                         text.map((text, index) => (
                             <span style={{color: textColor[index]}} key={index}>{text}</span>

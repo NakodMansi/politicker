@@ -6,17 +6,17 @@ import Image from "next/image";
 const cards = [
   { front: "", back: null },
   { front: "simple", back: "One email, many senders, same recipients — just pick your demand and click send." },
-  { front: <Image src="/chess1.svg" width={40} height={30} alt="chess image" />, back: null },
+  { front: <Image src="/chess1.svg" width={30} height={40} className="md:w-[50px] lg:w-[90px]" alt="chess image" />, back: null },
   { front: "", back: null },
-  { front: <Image src="/chess2.svg" width={40} height={30} alt="chess image" />, back: null },
+  { front: <Image src="/chess2.svg" width={30} height={30} className="md:w-[50px] lg:w-[90px]" alt="chess image" />, back: null },
   { front: "", back: null },
-  { front: <Image src="/chess3.svg" width={40} height={30} alt="chess image" />, back: null },
+  { front: <Image src="/chess3.svg" width={30} height={30} className="md:w-[50px] lg:w-[90px]" alt="chess image" />, back: null },
   { front: "EFFECTIVE", back: "Together we reach key parliament members — polite, direct, yet risking their re-election if dismissed." },
-  { front: <Image src="/chess4.svg" width={40} height={30} alt="chess image" />, back: null },
+  { front: <Image src="/chess4.svg" width={30} height={30} className="md:w-[50px] lg:w-[90px]" alt="chess image" />, back: null },
   { front: "", back: null },
   { front: "", back: null },
   { front: "STEPS", back: "1. Select Template\n2. Prepare Email\n3. Finalize Email\n4. Send" },
-  { front: <Image src="/chess5.svg" width={40} height={30} alt="chess image" />, back: null },
+  { front: <Image src="/chess5.svg" width={30} height={30} className="md:w-[50px] lg:w-[90px]" alt="chess image" />, back: null },
   { front: "SAFE", back: 'Contacting parliament members’ public emails is your right and representing you is their job. No time for tracking.' },
   { front: "", back: null },
 ];
@@ -41,7 +41,7 @@ export default function Chessboard() {
   };
 
   return (
-    <div className="w-full overflow-hidden bg-[#383535] flex justify-center">
+    <div className="w-full overflow-hidden flex justify-center">
       <div
         className="grid w-full justify-center"
         style={{
@@ -88,9 +88,9 @@ export default function Chessboard() {
                 </div>
               ) : (
                 <div
-                  className={`w-full h-full flex justify-center items-center ${
-                    index % 2 === 0 ? "bg-[#1E1E1E]" : "bg-white"
-                  }`}
+                  className={`w-full h-full flex items-end ${
+                    index % 2 === 0 ? "" : "bg-white"
+                  } ${index==4 || index==6 || index==12 ? "justify-start":"justify-end"}`}
                 >
                   {card.front}
                 </div>

@@ -18,7 +18,7 @@ export default function HomePage() {
     }
 
     return (
-        <div>
+        <div className="bg-[#1E1E1E]">
             <HeroBanner goToSelectMailFunc = {Scroll}/>
             <Chessboard />
             <SelectEmail reference = {goToSelectMail} goToPrepareMailFunc = {ScrollToPrepareMail}/>
