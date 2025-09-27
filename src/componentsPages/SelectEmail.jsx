@@ -13,7 +13,7 @@ const data = [
     },
 ];
 
-export default function SelectEmail() {
+export default function SelectEmail({reference, goToPrepareMailFunc}) {
     const [clickedId, setClicked] = useState(0);
     const [clickedFirstButton, setFirstButtonClick] = useState(0);
     const [clickedSecondButton, setClickedSecondButton] = useState(0);
@@ -35,7 +35,7 @@ export default function SelectEmail() {
     const btnCss = "py-[14px] px-4 text-[#FFF] text-[2.4rem] leading-[1.5rem] w-[275px] md:w-full md:p-4 md:w-[236px] md:text-[2rem] lg:text-[3.9rem] lg:leading-[4rem]";
 
     return (
-        <div className="bg-[#FFF] flex flex-col gap-[45px] items-center text-center py-[106px] px-6 w-full md:px-8 md:py-[60px] md:gap-[30px] lg:py-[100px] lg:px-[70px] lg:gap-[100px]">
+        <div ref={reference} className="bg-[#FFF] flex flex-col gap-[45px] items-center text-center py-[106px] px-6 w-full md:px-8 md:py-[60px] md:gap-[30px] lg:py-[100px] lg:px-[70px] lg:gap-[100px]">
             <h1 className="text-[#000] text-[3rem] leading-[2.5rem] md:text-[5rem] md:leading-[4rem] lg:text-[6rem]">1. select your email</h1>
 
             <div className="flex flex-col justify-center items-center gap-6 self-stretch md:flex-row-reverse md:justify-between">
@@ -61,7 +61,12 @@ export default function SelectEmail() {
                     </div>
                 </div>
 
-                <button className={`text-[1.2rem] text-[#FFF] py-[10px] px-4 leading-[1rem] w-full transition transition duration-500 ${!clickedId==1 && "opacity-0"} ${clickedFirstButton?"bg-[#266247]":"bg-[#4E4E4E]"} md:hidden`}>{clickedFirstButton==1?"prepare your mail":"unlock in few days (to avoid spam)"}</button>
+                <button 
+                    className={`text-[1.2rem] text-[#FFF] py-[10px] px-4 leading-[1rem] w-full transition transition duration-500 ${!clickedId==1 && "opacity-0"} ${clickedFirstButton?"bg-[#266247]":"bg-[#4E4E4E]"} md:hidden`} 
+                    onClick={goToPrepareMailFunc}
+                >
+                        {clickedFirstButton==1?"prepare your mail":"unlock in few days (to avoid spam)"}
+                </button>
             </div>
         </div>
     )

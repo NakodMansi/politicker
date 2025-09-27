@@ -3,7 +3,7 @@ import React from "react";
 const text = ["SICK OF ", "COMPLICITY ", "WITH CRIMES ", "IN YOUR NAME", "?"];
 const textColor = ["#FFF", "#A12828", "#FFF", "#348963", "#FFF" ];
 
-export default function HeroBanner() {
+export default function HeroBanner({goToSelectMailFunc}) {
     const btnCss = "pt-[14px] pb-3 px-[30px] w-fit bg-[#941010] text-[#FFF] text-[2.5rem] leading-[1.5rem] md:pt-4 md:pb-[14px] md:text-[3rem] lg:text-[2.7rem]";
 
     return (
@@ -21,7 +21,7 @@ export default function HeroBanner() {
             </div>
 
             <div className="flex flex-col items-center gap-2 self-stretch">
-                <button className={btnCss}>VOICE YOUR RIGHT</button>
+                <button className={btnCss} onClick={goToSelectMailFunc}>VOICE YOUR RIGHT</button>
                 <p className="text-[#A3A3A3] font-palanquin md:text-[1.9rem]" style={{textDecoration: "underline"}}>Why should I?</p>
             </div>
         </div>
