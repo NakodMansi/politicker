@@ -20,14 +20,14 @@ export default function PrepareEmail({Reference}) {
     }
 
     return (
-        <div ref={Reference} className="flex flex-col gap-4 px-4 py-8 w-full justify-center items-start md:flex-row md:py-[60px] md:px-8 md:gap-6 lg:py-[100px] lg:px-[70px] lg:gap-8" style={{background: "linear-gradient(180deg, #1E1E1E 27.87%, #5F1717 98.29%)"}}>
+        <div ref={Reference} className="flex flex-col gap-4 px-4 py-8 w-full justify-center items-start md:flex-row md:py-[60px] md:px-8 md:gap-6 lg:gap-8" style={{background: "linear-gradient(180deg, #1E1E1E 27.87%, #5F1717 98.29%)"}}>
             <div className="flex flex-col gap-4 w-full justify-center items-start self-stretch md:flex-row-reverse md:gap-6 lg:gap-8 lg:w-[66%]">
                 <div 
                     style={{backgroundImage: `url(${ReadyImage.src})`, backgroundSize: "cover", backgroundPosition: "center"}} 
-                    className="h-[291px] w-full md:flex-1 md:h-full md:w-[300px]"
+                    className="h-[291px] w-full md:flex-1 md:h-full md:w-[200px]"
                 ></div>
                 
-                <div className="flex gap-1 p-5 bg-[#FFF] self-stretch text-[2.1rem] leading-[2rem] md:flex-1 md:py-5 md:px-3 md:text-[2rem] md:leading-[2rem] lg:p-6 lg:gap-[10px] lg:text-[5rem] lg:leading-[4.5rem]">
+                <div className="flex gap-1 p-5 bg-[#FFF] self-stretch text-[1.7rem] leading-[2rem] md:flex-1 md:py-5 md:px-3 lg:text-[2.9rem] lg:leading-[2.9rem] lg:p-6 lg:gap-[10px]">
                     <span>2.</span> 
                     <span>prepare your email</span>
                 </div>

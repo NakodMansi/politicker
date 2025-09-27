@@ -1,0 +1,20 @@
+[
+    {
+        "subject": "This is subject text",
+        "body": "This is Body text",
+        "email1": "mansivnakod@gmail.com",
+        "email2": "mansivnakod1007@gmail.com"
+    },
+    {
+        "subject": "This is subject text",
+        "body": "This is Body text2",
+        "email1": "mansivnakod@gmail.com",
+        "email2": "mansivnakod1007@gmail.com"
+    },
+    {
+        "subject": "This is subject text",
+        "body": "This is Body text3",
+        "email1": "mansivnakod@gmail.com",
+        "email2": "mansivnakod1007@gmail.com"
+    }
+]

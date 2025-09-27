@@ -39,7 +39,7 @@ export default function Chessboard() {
     return (
         <div className="w-full overflow-hidden bg-[#383535] flex justify-center">
 
-            <div className="grid w-[770px] md:w-[1023px] lg:w-full" style={{gridTemplateColumns: `${windowWidth<769? "repeat(5, minmax(30vw, 1fr))":windowWidth>770 && windowWidth<1024?"repeat(5, minmax(20vw, 1fr))":"repeat(5, minmax(20vw, 1fr))"}`}}>
+            <div className="grid w-[770px] md:w-[1023px] lg:w-full" style={{gridTemplateColumns: `${windowWidth<769? "repeat(5, minmax(30vw, 1fr))":windowWidth>770 && windowWidth<1024?"repeat(5, minmax(14vw, 1fr))":"repeat(5, minmax(10vw, 1fr))"}`}}>
                 {
                         [...Array(15)].map((_, index) => (
                             <div className={`flex justify-end items-end aspect-square overflow-visible transform transition-transform duration-2000 preserve-3d backface-hidden hover:rotate-y-360 ${index%2==0? "bg-[#1E1E1E]":"bg-white"}`} key={index}>
