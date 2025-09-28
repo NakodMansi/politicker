@@ -47,7 +47,9 @@ export default function SendEmail() {
         setStep(nextStep);
         localStorage.setItem("emailStep", nextStep);
 
-        console.log(index)
+        if (nextStep > index) {
+            alert(`Email sent successfully`);
+        }
     };
 
     const buttonClass = (index) =>
@@ -66,7 +68,7 @@ export default function SendEmail() {
         
         return null;
     }
-    
+
     return (
         <>
             <Header />
