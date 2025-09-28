@@ -19,16 +19,21 @@ export default function SendEmail() {
 
     // Track window size
     useEffect(() => {
-        const handleResize = () => setScreenSize(window.innerWidth);
-        handleResize();
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
+        if (typeof window !== "undefined") {
+            const handleResize = () => setScreenSize(window.innerWidth);
+            handleResize();
+            window.addEventListener("resize", handleResize);
+            return () => window.removeEventListener("resize", handleResize);
+        }
     }, []);
 
     // Load step from localStorage
     useEffect(() => {
-        const savedStep = localStorage.getItem("emailStep");
-        if (savedStep) setStep(parseInt(savedStep));
+        if (typeof window !== "undefined") {
+
+            const savedStep = localStorage.getItem("emailStep");
+            if (savedStep) setStep(parseInt(savedStep));
+        }
     }, []);
 
     function sendEmail(index) {
