@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import phoneImg from "../../public/phoneImg.svg";
 
 export default function ReadySection() {
     const [screenSize, setScreenSize] = useState(0);
@@ -8,7 +9,6 @@ export default function ReadySection() {
     useEffect(() => {
         const handleResize = () => setScreenSize(window.innerWidth);
 
-        console.log(screenSize);
         handleResize();
 
         window.addEventListener("resize", handleResize);
@@ -22,7 +22,7 @@ export default function ReadySection() {
                     {screenSize > 1023 ? "App coming soon..." : "App coming out soon..."}
                 </p>
 
-                <Image src="/phoneImg.svg" width={200} height={0} alt="phone image" className="md:hidden" />
+                <Image src={phoneImg} width={200} height={10} alt="phone image" className="md:hidden" />
 
                 <p className="text-[3.5rem] leading-[3.5rem] md:text-[3.9rem] md:leading-[4rem] lg:text-[5rem] lg:leading-[5rem] text-[#FFF]">
                     Stay tuned for 

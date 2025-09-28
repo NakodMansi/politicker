@@ -5,6 +5,7 @@ import Link from "next/link";
 import content from "./content.json";
 import Header from "@/componentsPages/Header";
 import Footer from "@/componentsPages/Footer";
+import { useSearchParams } from "next/navigation";
 
 const committees = [
   "Human rights committee",
@@ -30,15 +31,17 @@ export default function SendEmail() {
         if (savedStep) setStep(parseInt(savedStep));
     }, []);
 
-    function sendEmail() {
-        const { email1, email2, subject, body } = content[0];
+    function sendEmail(index) {
+        const { body } = content[index];
         const formattedBody = body.replace(/\n/g, "%0A");
 
-        window.open(`https://mail.google.com/?view=cm&fs=1&bcc=${email1},${email2}&su=${subject}&body=${formattedBody}`);
+        window.open(`https://mail.google.com/?view=cm&fs=1&bcc=${content[index].emails}&su=${content[index].subject}&body=${formattedBody}`);
 
         const nextStep = step + 1;
         setStep(nextStep);
         localStorage.setItem("emailStep", nextStep);
+
+        console.log(index)
     };
 
     const buttonClass = (index) =>
@@ -49,6 +52,9 @@ export default function SendEmail() {
     const boxShadowStyle = screenSize < 769
         ? { boxShadow: "10.387px 10.387px 5.666px 0 #994242" }
         : { boxShadow: "10.768px 10.768px 3.554px 0 #994242" };
+
+    const searchParams = useSearchParams();
+    const btnNum = searchParams.get("buttonNumber");
 
     return (
         <>

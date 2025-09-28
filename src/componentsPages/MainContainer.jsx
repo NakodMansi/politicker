@@ -10,7 +10,7 @@ export default function MainContainer() {
                 <p className={`${pText} pl-[30px] md:pl-[70px]`} >ONE CHECKAT <br /> A TIME.</p>
             </div>
 
-            <Image width={0} height={0} src= "/PlayingChess.svg" className="w-full bg-[#1E1E1E]" />
+            <Image width={0} height={0} src= "/PlayingChess.svg" alt="Playing Chess" className="w-full bg-[#1E1E1E]" />
         </div>
     )
 }
