@@ -6,6 +6,7 @@ import content from "./content.json";
 import Header from "@/componentsPages/Header";
 import Footer from "@/componentsPages/Footer";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 const committees = [
   "Human rights committee",
@@ -58,8 +59,13 @@ export default function SendEmail() {
         ? { boxShadow: "10.387px 10.387px 5.666px 0 #994242" }
         : { boxShadow: "10.768px 10.768px 3.554px 0 #994242" };
 
-    // const searchParams = useSearchParams();
-    // // const btnNum = searchParams.get("buttonNumber");
+    
+    function MailComponent() {
+        const searchParams = useSearchParams();
+        const btnNum = searchParams.get("buttonNumber");
+        
+        return null;
+    }
     
     return (
         <>
@@ -121,7 +127,9 @@ export default function SendEmail() {
                     <button className={`w-[150px] ml-4 text-white md:hidden ${step>3?"bg-[#266247]":"bg-[#888] "}`}>Done</button>
                 </Link>
             </div>
-            
+            <Suspense fallback={<div>Loading...</div>}>
+                <MailComponent />
+            </Suspense>
             <Footer />
         </>
   );
