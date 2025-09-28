@@ -62,12 +62,16 @@ export default function SendEmail() {
     // const btnNum = searchParams.get("buttonNumber");
 
     useEffect(() => {
-        if (typeof window !== undefined) {
-            const searchParams = useSearchParams();
-            const btnNum = searchParams.get("buttonNumber");
+        function getNumber() {
+            if (typeof window !== undefined) {
+                const searchParams = useSearchParams();
+                const btnNum = searchParams.get("buttonNumber");
 
-            console.log(btnNum)
+                console.log(btnNum)
+            }
         }
+
+        getNumber();
     })
     return (
         <>
