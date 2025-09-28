@@ -58,8 +58,8 @@ export default function SendEmail() {
         ? { boxShadow: "10.387px 10.387px 5.666px 0 #994242" }
         : { boxShadow: "10.768px 10.768px 3.554px 0 #994242" };
 
-    const searchParams = useSearchParams();
-    // const btnNum = searchParams.get("buttonNumber");
+    // const searchParams = useSearchParams();
+    // // const btnNum = searchParams.get("buttonNumber");
     
     return (
         <>
