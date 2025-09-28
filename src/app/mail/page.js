@@ -38,11 +38,18 @@ export default function SendEmail() {
     }, []);
 
     function sendEmail(index) {
-        const { body } = content[index];
+        const { emails, subject, body } = content[index];
         const formattedBody = body.replace(/\n/g, "%0A");
 
-        window.open(`https://mail.google.com/?view=cm&fs=1&bcc=${content[index].emails}&su=${content[index].subject}&body=${formattedBody}`);
+        const mailWebLink = `https://mail.google.com/?view=cm&fs=1&bcc=${content[index].emails}&su=${content[index].subject}&body=${formattedBody}`;
+        const mailAppLink = `mailto:${emails}?subject=${encodeURIComponent(subject)}&body=${formattedBody}`;
+ 
+        window.location.href= mailAppLink;
 
+        setTimeout(() => {
+           window.open(mailWebLink, "_blank");
+        },);
+    
         const nextStep = step + 1;
         setStep(nextStep);
         localStorage.setItem("emailStep", nextStep);
