@@ -71,7 +71,7 @@ export default function Chessboard() {
                 >
                   {/* Front */}
                   <div
-                    className={`absolute inset-0 flex justify-center items-center bg-white text-[1.2rem] md:text-[1.5rem] md:text-[2rem] lg:text-[3.5rem]`}
+                    className={`absolute inset-0 flex justify-center items-center bg-white text-[#000] text-[clamp(1.2rem,2vw,4rem)] leading-[clamp(1.5rem,2vw,4rem)]`}
                     style={{ backfaceVisibility: "hidden" }}
                   >
                     {card.front}

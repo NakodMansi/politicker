@@ -4,25 +4,24 @@ const text = ["SICK OF ", "COMPLICITY ", "WITH CRIMES ", "IN YOUR NAME", "?"];
 const textColor = ["#FFF", "#A12828", "#FFF", "#348963", "#FFF" ];
 
 export default function HeroBanner({goToSelectMailFunc}) {
-    const btnCss = "py-2 px-3 md:py-4 md:px-[30px] w-[90%] bg-[#941010] text-[#FFF] text-[1.5rem] leading-[1rem] md:w-[300px] md:text-[2rem] md:leading-[2rem] lg:text-[2.5rem] lg:leading-[1.5rem]";
+    const btnCss = "py-[6.5px] px-[16px] bg-[#941010] text-[#FFF] text-[clamp(0.9rem,1.5vw,2rem)] leading-[clamp(1.5rem,2vw,4rem)] w-fit rounded-[8px] md:py-4 md:px-[30px] w-[90%] md:w-[300px]";
 
     return (
-        <div className="flex flex-col justify-center items-center gap-[40px] md:gap-[78px] w-full text-center px-4 py-8 md:gap-[50px] md:py-[60px] md:px-4 lg:px-8 lg:py-[60px]">
-            <div className="flex flex-col items-center gap-[6px] self-stretch">
-                <h1 className="text-[4.5rem] leading-[4rem] md:text-[4.5rem] md:leading-[4.5rem] lg:text-[6rem] lg:leading-[5.5rem]">
-                    {
-                        text.map((text, index) => (
-                            <span style={{color: textColor[index]}} key={index}>{text}</span>
-                        ))
-                    }
+        <div className="pt-[190px] px-[30px] pb-[115px] flex flex-col justify-center items-center gap-[78px] w-full text-center relative md:gap-[50px] md:py-[60px] md:px-4 lg:px-8 lg:py-[60px]">
+            <div className="flex flex-col items-center gap-[6px] self-stretch z-[1]">
+                <h1 className="text-[#FFF] text-[clamp(2.5rem,3vw,4rem)] leading-[clamp(2.8rem,2vw,4rem)]"
+                style={{textShadow: "0 4px 4px #941010"}}>
+                    sick of complicity with crimes in your name?
                 </h1>
 
-                <h3 className="text-[#888888F7] text-[2rem] leading-[2rem] md:text-[3rem] md:leading-[3rem] lg:w-[70%] lg:text-[4rem] lg:leading-[3.8rem]">EMAIL OUR POLICITICIANS TO RESPECT <br /> INTERNATIONAL LAW.</h3>
+                <h3 className="text-[#888888F7] text-[clamp(1.25rem,2vw,4rem)] leading-[clamp(1.5rem,2.5vw,4rem)]">ask our politicians to respect <br /> international law.</h3>
             </div>
 
+            <div className="absolute h-[300px] w-full top-0" style={{background: "linear-gradient(to bottom, #5B1616 0%, #1E1E1E 100%)"}}></div>
+
             <div className="flex flex-col items-center gap-2 self-stretch">
-                <button className={btnCss} onClick={goToSelectMailFunc}>VOICE YOUR RIGHT</button>
-                <p className="text-[#A3A3A3] font-palanquin md:text-[1.4rem] lg:text-[1.5rem]" style={{textDecoration: "underline"}}>Why should I?</p>
+                <button className={btnCss} onClick={goToSelectMailFunc}>send an email</button>
+                <p className="text-[#A3A3A3] font-palanquin text-[clamp(0.6rem,1.5vw,2rem)] leading-[clamp(1.5rem,2vw,4rem)]" style={{textDecoration: "underline"}}>Why should I?</p>
             </div>
         </div>
     )
