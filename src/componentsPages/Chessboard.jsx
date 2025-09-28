@@ -71,7 +71,7 @@ export default function Chessboard() {
                 >
                   {/* Front */}
                   <div
-                    className={`absolute inset-0 flex justify-center items-center bg-white text-[#000] text-[clamp(1.2rem,2vw,4rem)] leading-[clamp(1.5rem,2vw,4rem)]`}
+                    className={`absolute inset-0 flex justify-center items-center bg-white rounded-[2px] text-[#000] text-[clamp(1.2rem,2vw,4rem)] leading-[clamp(1.5rem,2vw,4rem)]`}
                     style={{ backfaceVisibility: "hidden" }}
                   >
                     {card.front}
@@ -79,8 +79,7 @@ export default function Chessboard() {
 
                   {/* Back */}
                   <div
-                    className={`absolute inset-0 flex justify-center items-center bg-white p-3 font-palanquin text-[0.5rem] md:text-[0.8rem] lg:p-6 lg:text-[1.4rem]
-                    `}
+                    className={`absolute text-[#000] inset-0 flex justify-center items-center bg-white p-3 font-palanquin text-[clamp(0.5rem,1vw,2vw)] leading-[clamp(0.5rem,1vw,2vw)]`}
                     style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)", whiteSpace: "pre-wrap" }}
                   >
                     {card.back}
@@ -88,7 +87,7 @@ export default function Chessboard() {
                 </div>
               ) : (
                 <div
-                  className={`w-full h-full flex items-end ${
+                  className={`w-full h-full flex items-end rounded-[2px] ${
                     index % 2 === 0 ? "" : "bg-white"
                   } ${index==4 || index==6 || index==12 ? "justify-start":"justify-end"}`}
                 >
