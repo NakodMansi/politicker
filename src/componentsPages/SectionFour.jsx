@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SectionFour() {
     const btnCss = "py-[14px] px-4 text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(0.7rem,2vw,4rem)] w-[156px] bg-[#941010] text-[#FFF] rounded-[8px] transition duration-500 md:py-3 md:px-[30px] md:text-[1.5rem] md:leading-[1.5rem] md:w-[200px] lg:text-[2.5rem] lg:w-[350px] lg:leading-[2.5rem]";
@@ -23,9 +24,9 @@ export default function SectionFour() {
                     </p>
                 </div>
 
-                <a href="/#section3">
+                <Link href="/#section3">
                     <button className={btnCss} >send email</button>
-                </a>
+                </Link>
             </div>
         </div>
     )

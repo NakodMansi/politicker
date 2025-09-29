@@ -47,9 +47,9 @@ export default function Explanation() {
                         onClick={Share}
                     >Spread these facts</button>
 
-                    <a href="/">
+                    <Link href="/">
                         <button className={btnCss}>Voice your right</button>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
