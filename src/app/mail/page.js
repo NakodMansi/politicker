@@ -138,9 +138,9 @@ export default function SendEmail() {
                 </div>
 
                 <div className="flex justify-center items-center gap-[44px] w-full">
-                    <a href="/#section4">
+                    <Link href="/#section4">
                         <button className={buttonClass(4)} style={{backgroundColor: "#941010"}}>remind me to send 2. email</button>
-                    </a>
+                    </Link>
                     <Link href="/thankYou">
                         <button className={`px-4 border border-[#383535] rounded-[10px] text-[#383535]`}>Done</button>
                     </Link>
