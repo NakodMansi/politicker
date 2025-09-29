@@ -19,7 +19,7 @@ export default function ThankYou() {
                     alt="thank you"
                     className="md:w-[250px] lg:w-[290px]"
                 />
-                <p className="text-[#EDEDED] text-[2rem] leading-[2rem] font-oswald md:text-[2.2rem] md:leading-[2.5rem] md:font-bold lg:text-[2.6rem] lg:leading-[3.3rem]">
+                <p className="text-[#EDEDED] text-[clamp(2rem,3vw,4rem)] leading-[clamp(2.7rem,3vw,4rem)] font-oswald md:font-bold">
                     THANK YOU
                 </p>
             </div>

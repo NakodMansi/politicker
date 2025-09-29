@@ -39,7 +39,7 @@ export default function PrepareEmail({reference, buttonNumber}) {
     }
 
     return (
-        <div ref={reference} className="flex flex-col gap-[23px] px-4 pb-8 pt-[70px] w-full justify-center items-start md:flex-row md:py-[60px] md:px-8 md:gap-6 lg:gap-8" style={{background: "linear-gradient(180deg, #1E1E1E 27.87%, #5F1717 98.29%)"}}>
+        <div ref={reference} id="section4" className="flex flex-col gap-[23px] px-4 pb-8 pt-[70px] w-full justify-center items-start md:flex-row md:py-[60px] md:px-8 md:gap-6 lg:gap-8" style={{background: "linear-gradient(180deg, #1E1E1E 27.87%, #5F1717 98.29%)"}}>
             <div className="flex flex-col-reverse gap-[23px] w-full justify-center items-start self-stretch md:gap-6 lg:gap-8 lg:w-[66%]">
                 <div 
                     style={{backgroundImage: `url(${ReadyImage.src})`, backgroundSize: "cover", backgroundPosition: "center"}} 
