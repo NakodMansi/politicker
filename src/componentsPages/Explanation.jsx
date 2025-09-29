@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Explanation() {
-    const btnCss = "py-[6px] px-2 w-[150px] bg-[#941010] text-[#FFF] lg:w-fit lg:text-[2.5rem] lg:py-3 lg:leading-[2.5rem]";
-
+    const btnCss = "py-[14px] px-4 text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(0.7rem,2vw,4rem)] w-[156px] bg-[#941010] text-[#FFF] rounded-[8px] transition duration-500 md:py-3 md:px-[30px] md:text-[1.5rem] md:leading-[1.5rem] md:w-[200px] lg:text-[2.5rem] lg:w-[350px] lg:leading-[2.5rem]";
+    
     async function Share() {
         try {
             if (navigator.share) {
@@ -25,37 +25,32 @@ export default function Explanation() {
     }
     return (
         <div className="flex flex-col items-center py-[60px] px-4 gap-6 text-center w-full md:hidden lg:flex lg:items-start lg:flex-row lg:px-[200px] lg:gap-[70px] lg:pt-[60px] lg:pb-[100px]">
-            <p className="text-[3.1rem] leading-[3.1rem] lg:text-left lg:text-[6rem] lg:leading-[6rem] text-[#FFF]">
-                Enraged that <br/>
-                <span className="text-[#266247]"> your taxes <br /> </span> 
-                fund
-                <span className="text-[#A12828]"> crimes <br /> </span>
+            <p className="text-[clamp(2.5rem,3vw,4rem)] leading-[clamp(2.8rem,3vw,4rem)] lg:text-left text-[#FFF]">
+                Enraged that your 
+                <span className="text-[#941010]">  taxes fund crimes </span> 
                 against humanity?
             </p>
 
-            <div className="flex flex-col justify-center items-center self-stretch gap-4 lg:w-[50%] lg:gap-[50px]">
-                <div className="flex flex-col items-center gap-6 lg:gap-[40px]">
-                    <Image 
-                        src="/englishTemplate.png" 
-                        width={140} 
-                        height={100} 
-                        alt="englishTemplate" 
-                        style={{boxShadow: "7.58px 7.58px 2.316px 0 #994242"}}
-                        className="w-[200px]"
-                    />
+            <div className="flex flex-col justify-center items-center self-stretch gap-[51px] lg:w-[50%] lg:gap-[50px]">
+                <Image 
+                    src="/englishTemplate.png" 
+                    width={100} 
+                    height={100} 
+                    alt="englishTemplate" 
+                    style={{boxShadow: "13.58px 13.58px 2.316px 0 #994242"}}
+                    className="w-[100px]"
+                />
 
-                    {/* <a href="#"> */}
-                        <p 
-                            className="text-[#A3A3A3] text-[1.3rem] lg:text-[2rem]" 
-                            style={{textDecoration: "underline", cursor: "pointer"}}
-                            onClick={Share}
-                        >Spread these facts</p>
-                    {/* </a> */}
+                <div className="flex flex-col justify-center items-center self-stretch gap-2">
+                    <button
+                        className="py-3 px-4 rounded-[10px] border border-[#A3A3A3] text-[#A3A3A3] w-[156px] text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(0.7rem,1vw,2rem)]" 
+                        onClick={Share}
+                    >Spread these facts</button>
+
+                    <a href="/">
+                        <button className={btnCss}>Voice your right</button>
+                    </a>
                 </div>
-
-                <Link href="/">
-                    <button className={btnCss}>Voice your right</button>
-                </Link>
             </div>
         </div>
     )

@@ -64,12 +64,12 @@ export default function SelectEmail({reference, ScrollToPrepareMailFunc}) {
     function openDoc(url) {
         window.open(url)
     }
-    const btnCss = "py-[14px] px-4 w-[90%] text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(1.5rem,2vw,4rem)] text-[#FFF] rounded-[8px] transition duration-500 md:py-3 md:px-[30px] md:text-[1.5rem] md:leading-[1.5rem] md:w-[200px] lg:text-[2.5rem] lg:w-[350px] lg:leading-[2.5rem]";
+    const btnCss = "py-[14px] px-4 w-[90%] text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(1.5rem,2vw,4rem)] text-[#FFF] rounded-[8px] transition duration-500 md:py-3 md:px-[30px] md:w-[200px] lg:w-[350px]";
     const EUdata = data["EU"];
     const gazaData = data["Gaza"];
     
     return (
-        <div ref={reference} className="px-[39px] py-[140px] w-full bg-[#FFF] flex flex-col gap-[18px] items-center text-center md:px-8 md:gap-[30px] lg:p-[70px]">
+        <div ref={reference} id="section3" className="px-[39px] py-[140px] w-full bg-[#FFF] flex flex-col gap-[18px] items-center text-center md:px-8 md:gap-[30px] lg:p-[70px]">
             <h1 className="text-[#000] text-[clamp(2.5rem,3vw,4rem)] leading-[clamp(3.1rem,3vw,4rem)]">1. select your email</h1>
 
             <div className="flex flex-col justify-center items-center gap-[22px] self-stretch md:flex-row-reverse md:justify-between">

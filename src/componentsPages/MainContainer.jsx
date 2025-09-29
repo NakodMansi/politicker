@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
 export default function MainContainer() {
-    const pText="leading-[0.8rem] text-[#FFF] md:text-[3rem] md:leading-[3rem] lg:text-[4rem] lg:leading-[4rem]";
+    const pText="text-[#FFF] text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(1.2rem,2vw,3rem)]";
     
     return (
-        <div className="w-full relative">
-            <div className="absolute top-[20px] pl-5 flex flex-col gap-5 md:pl-8 md:gap-7 lg:pl-[100px]">
+        <div className="w-full relative pb-[425px]">
+            <div className="absolute top-[20px] pl-10 flex flex-col gap-5 md:pl-8 md:gap-7 lg:pl-[100px]">
                 <p className={pText} >STRATEGIC <br/> Steps,</p>
-                <p className={`${pText} pl-[30px] md:pl-[70px]`} >ONE CHECKAT <br /> A TIME.</p>
+                <p className={`${pText} pl-13 md:pl-[70px]`} >ONE CHECKAT <br /> A TIME.</p>
             </div>
 
             <Image width={0} height={0} src= "/PlayingChess.svg" alt="Playing Chess" className="w-full bg-[#1E1E1E]" />
