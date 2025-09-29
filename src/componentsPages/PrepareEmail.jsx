@@ -70,7 +70,7 @@ export default function PrepareEmail({reference, buttonNumber}) {
                     
                     {
                         showNameMsg && 
-                        <div className={`p-2 w-fit bg-[#515050] absolute top-[5px] right-[50px] text-[#FFF] font-palanquin text-[0.6rem] transition-all duration-500`}>
+                        <div className={`p-2 w-fit bg-[#515050] absolute top-[5px] right-[50px] text-[#FFF] font-palanquin text-[0.4rem] transition-all duration-500`}>
                             <p>Including your name in your letter makes </p>
                             <p className="font-semibold"> it more believable</p> 
                         </div>
@@ -109,7 +109,7 @@ export default function PrepareEmail({reference, buttonNumber}) {
                             onMouseOut= {() => {setShowEmailMsg(false)}}
                         />
                     
-                        <div className={`p-2 w-fit bg-[#515050] absolute top-[5px] right-[50px] text-[#FFF] font-palanquin text-[0.6rem] transition duration-500  ${showEmailMsg?"flex":"hidden"}`}>
+                        <div className={`p-2 w-fit bg-[#515050] absolute top-[5px] right-[50px] text-[#FFF] font-palanquin text-[0.4rem] transition duration-500  ${showEmailMsg?"flex":"hidden"}`}>
                             <p>Don’t want to use your personal email? Try Proton Mail — more secure with end-to-end encryption.</p>
                         </div>
                     </a>
