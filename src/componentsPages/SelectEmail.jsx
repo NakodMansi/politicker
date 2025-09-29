@@ -84,7 +84,7 @@ export default function SelectEmail({reference, ScrollToPrepareMailFunc}) {
                 </div>
 
                 <div className="flex flex-col items-center gap-[10px] self-stretch md:w-[45%] md:gap-[6px] lg:pt-6">
-                    <h2 className="text-[#000] text-[clamp(1.2rem,2vw,4rem)] leading-[clamp(2rem,2vw,4rem)]">preview</h2>
+                    <h2 className="text-[#000] text-[clamp(1.2rem,2vw,4rem)] leading-[clamp(2rem,2vw,4rem)]">Click On Letter To Preview pdf</h2>
 
                     <div className="flex justify-between items-center self-stretch md:pl-5 md:gap-8 lg:gap-[50px]">
                         {

@@ -12,7 +12,10 @@ export default function PrepareEmail({reference, buttonNumber}) {
 
     const [nameEmail, setName] = useState({user_name: "", email: ""});
     const [showNameMsg, setShowNameMsg] = useState(false);
+    const [showNameMsgOnce, setShowNameMsgOnce] = useState(false);
     const [showEmailMsg, setShowEmailMsg] = useState(false);
+    const [clickCount, setClickCount] = useState(0);
+
     const router = useRouter();
 
     function handleChange(event) {
@@ -22,25 +25,17 @@ export default function PrepareEmail({reference, buttonNumber}) {
     }
 
     function handleBtnClick() {
-        if (showEmailMsg || showNameMsg) {
-            router.push(`/mail?buttonNumber=${buttonNumber}`);
-        }
-    }
+        setClickCount(clickCount+1);
 
-    function showNameEmail() {
-        if (nameEmail.user_name === ""){
-            setShowNameMsg(true);
-            
-            setTimeout(() => {
-                setShowNameMsg(false)
-            }, [3000]);
+        if (nameEmail.email) {
+            if (!nameEmail.user_name && !showNameMsgOnce) {
+                setShowNameMsg(true);
+                setShowNameMsgOnce(true)
+                setTimeout(() => setShowNameMsg(false), 3000);
+           }
+           
+           if (clickCount==2) router.push(`/mail?buttonNumber${buttonNumber}`)
         }
-
-        setShowEmailMsg(true);
-            
-        setTimeout(() => {
-            setShowEmailMsg(false)
-        }, [3000]);
     }
 
     return (
@@ -65,17 +60,21 @@ export default function PrepareEmail({reference, buttonNumber}) {
                     />
                     <Image 
                         src="Frame.svg" 
-                        width={30} 
-                        height={30} 
+                        width={20} 
+                        height={20} 
                         alt="Frame Icon" 
-                        className="absolute top-[7px] right-2 md:top-[7px] lg:right-4"
+                        className="absolute top-[13px] right-2 md:top-[7px] lg:right-4"
                         onMouseOver= {() => {setShowNameMsg(true)}}
                         onMouseOut= {() => {setShowNameMsg(false)}}
                     />
-                    <div className={`p-2 w-fit bg-[#515050] absolute top-[5px] right-[50px] text-[#FFF] font-palanquin text-[0.6rem] transition-all duration-500 ${showNameMsg?"flex":"hidden"} `}>
-                        <p>Including your name in your letter makes </p>
-                        <p className="font-semibold"> it more believable</p> 
-                    </div>
+                    
+                    {
+                        showNameMsg && 
+                        <div className={`p-2 w-fit bg-[#515050] absolute top-[5px] right-[50px] text-[#FFF] font-palanquin text-[0.6rem] transition-all duration-500`}>
+                            <p>Including your name in your letter makes </p>
+                            <p className="font-semibold"> it more believable</p> 
+                        </div>
+                    }
                     <label className={labelCss} >Name (recommended)</label>
                 </div>
 
@@ -95,17 +94,17 @@ export default function PrepareEmail({reference, buttonNumber}) {
                     <a href="https://account.proton.me/start?ref=pme_lp_b2c_proton_menu" target="_blank" className="w-full" >
                         <button
                             type="button"
-                            className={`${inputFieldCss} border-[#941010] text-[#941010] tracking-wide lg:text-[1.5rem]`}
+                            className={`${inputFieldCss} border-[#941010] text-[#941010] tracking-wide text-[clamp(1rem,2vw,3rem)] leading-[clamp(1.2rem,2vw,3rem)]`}
                         >
                             create a proton mail first
                         </button>
 
                         <Image 
-                            src="/Frame.svg" 
-                            width={30} 
-                            height={30} 
+                            src="/Frame2.svg" 
+                            width={20} 
+                            height={20} 
                             alt="Frame Icon" 
-                            className="absolute top-[7px] right-2 md:top-[7px] lg:right-4" 
+                            className="absolute top-[13px] right-2 md:top-[7px] lg:right-4" 
                             onMouseOver= {() => {setShowEmailMsg(true)}}
                             onMouseOut= {() => {setShowEmailMsg(false)}}
                         />
@@ -121,8 +120,7 @@ export default function PrepareEmail({reference, buttonNumber}) {
                     type="submit" 
                     name="submitBtn" 
                     className={btnCss} 
-                    disabled={nameEmail.email===""}
-                    onClick={() => {showNameEmail(), setShowEmailMsg(true), handleBtnClick()}}
+                    onClick={handleBtnClick}
                 >
                     finalize emails
                 </button>
