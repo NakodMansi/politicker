@@ -104,7 +104,7 @@ export default function PrepareEmail({reference, buttonNumber}) {
                             width={20} 
                             height={20} 
                             alt="Frame Icon" 
-                            className="absolute top-[13px] right-2 md:top-[7px] lg:right-4" 
+                            className="absolute top-[12px] right-2 md:top-[7px] lg:right-4" 
                             onMouseOver= {() => {setShowEmailMsg(true)}}
                             onMouseOut= {() => {setShowEmailMsg(false)}}
                         />
