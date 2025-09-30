@@ -40,21 +40,23 @@ export default function SendEmail() {
         }
     }, []);
 
-
-    console.log(step)
     function sendEmail(index) {
         const { emails, subject, body } = content[index];
         const formattedBody = body.replace(/\n/g, "%0A");
 
-        const mailWebLink = `https://mail.google.com/?view=cm&fs=1&bcc=${content[index].emails}&su=${content[index].subject}&body=${formattedBody}`;
         const mailAppLink = `mailto:${emails}?subject=${encodeURIComponent(subject)}&body=${formattedBody}`;
- 
+        const mailWebLink = `https://mail.google.com/?view=cm&fs=1&bcc=${emails}&su=${subject}&body=${formattedBody}`;
+        
         window.location.href= mailAppLink;
 
         setTimeout(() => {
            window.open(mailWebLink, "_blank");
-        },);
+        },2500);
     
+        window.addEventListener("focus", () => {
+            clearTimeout(fallback);
+        }, { once: true });
+        
         const nextStep = step + 1;
         setStep(nextStep);
         sessionStorage.setItem("emailStep", nextStep);
