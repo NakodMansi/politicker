@@ -49,23 +49,17 @@ export default function SendEmail() {
         
         window.location.href= mailAppLink;
 
-        setTimeout(() => {
+        let fallback = setTimeout(() => {
            window.open(mailWebLink, "_blank");
         },2500);
     
         window.addEventListener("focus", () => {
             clearTimeout(fallback);
         }, { once: true });
-        
+
         const nextStep = step + 1;
         setStep(nextStep);
         sessionStorage.setItem("emailStep", nextStep);
-
-        setTimeout(() => {
-            if (nextStep > index) {
-            alert(`Email sent successfully`);
-        }
-        }, 2000);
     };
 
     const buttonClass = (index) =>
