@@ -59,7 +59,7 @@ export default function ContactUs() {
                 </div>
             </div>
             
-            <form onSubmit={() => { e.preventDefault() }} className="flex flex-col justify-center items-center self-stretch gap-[11px] flex-1 py-4 px-6 bg-[#FFF] md:py-6 md:gap-[30px] lg:p-6 lg:w-[33%] lg:gap-6">
+            <form onSubmit={() => { e.preventDefault() }} className="flex flex-col justify-center items-center self-stretch gap-[11px] flex-1 py-4 px-6 rounded-[5px] bg-[#FFF] md:py-6 md:gap-[30px] lg:p-6 lg:w-[33%] lg:gap-6">
                 <div className={`${formDivCss} md:hidden`}>
                     <button name="mailBtn" className={`${inputFieldCss} border-[#941010] text-[#941010] tracking-wide text-[clamp(1rem,2vw,3rem)] leading-[clamp(1.2rem,2vw,3rem)]`}>create a proton mail</button>
                     

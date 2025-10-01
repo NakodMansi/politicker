@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Explanation() {
-    const btnCss = "py-[14px] px-4 text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(0.7rem,2vw,4rem)] w-[156px] bg-[#941010] text-[#FFF] rounded-[8px] transition duration-500 md:py-3 md:px-[30px] md:text-[1.5rem] md:leading-[1.5rem] md:w-[200px] lg:text-[2.5rem] lg:w-[350px] lg:leading-[2.5rem]";
+    const btnCss = "py-[14px] px-4 text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(0.7rem,2vw,4rem)] w-[180px] bg-[#941010] text-[#FFF] rounded-[8px] transition duration-500 md:py-3 md:px-[30px] md:text-[1.5rem] md:leading-[1.5rem] md:w-[200px] lg:text-[2.5rem] lg:w-[350px] lg:leading-[2.5rem]";
     
     async function Share() {
         try {
@@ -43,7 +43,7 @@ export default function Explanation() {
 
                 <div className="flex flex-col justify-center items-center self-stretch gap-2">
                     <button
-                        className="py-3 px-4 rounded-[10px] border border-[#A3A3A3] text-[#A3A3A3] w-[156px] text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(0.7rem,1vw,2rem)]" 
+                        className="py-3 px-4 rounded-[10px] border border-[#A3A3A3] text-[#A3A3A3] w-[186px] text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(0.7rem,1vw,2rem)]" 
                         onClick={Share}
                     >Spread these facts</button>
 

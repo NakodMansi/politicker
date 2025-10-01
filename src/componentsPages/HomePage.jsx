@@ -22,7 +22,6 @@ export default function HomePage() {
         setNum(btnNumber);
     }
 
-
     return (
         <div className="bg-[#1E1E1E]">
             <Header />

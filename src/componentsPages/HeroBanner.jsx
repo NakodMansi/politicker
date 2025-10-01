@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const text = ["SICK OF ", "COMPLICITY ", "WITH CRIMES ", "IN YOUR NAME", "?"];
@@ -19,9 +20,11 @@ export default function HeroBanner({goToSelectMailFunc}) {
 
             <div className="absolute h-[300px] w-full top-0" style={{background: "linear-gradient(to bottom, #5B1616 0%, #1E1E1E 100%)"}}></div>
 
-            <div className="flex flex-col items-center gap-2 self-stretch z-[1]">
+            <div className="flex flex-col items-center gap-8 self-stretch z-[1]">
                 <button className={btnCss} onClick={goToSelectMailFunc}>send an email</button>
-                <p className="text-[#A3A3A3] font-palanquin text-[clamp(0.6rem,1.5vw,2rem)] leading-[clamp(1.5rem,2vw,4rem)]" style={{textDecoration: "underline"}}>Why should I?</p>
+                <Link href="/about">
+                    <p className="text-[#A3A3A3] font-palanquin text-[clamp(0.6rem,1.5vw,2rem)] leading-[clamp(1.5rem,2vw,4rem)]" style={{textDecoration: "underline"}}>Why should I?</p>
+                </Link>
             </div>
         </div>
     )

@@ -14,7 +14,9 @@ export default function Header() {
                 </Link>
             </ul>
 
-            <p className="text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(1.5rem,2vw,3rem)]">Politicker</p>
+            <Link href="/" >
+                <p className="text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(1.5rem,2vw,3rem)]">Politicker</p>
+            </Link>
 
             <Link href="#">
                 <button className="py-2 px-4 bg-[#941010] text-[clamp(0.6rem,1vw,2vw)] leading-[clamp(1rem,2vw,3rem)] rounded-[8px]">send email</button>

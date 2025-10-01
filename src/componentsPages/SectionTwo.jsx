@@ -1,5 +1,7 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function SectionTwo() {
     const divCss="flex items-center justify-center py-[9px] px-[7px] rounded-[4px] ";
@@ -32,9 +34,16 @@ export default function SectionTwo() {
 
             <div className="flex flex-col justify-center items-center relative pt-[50px] md:gap-[60px] lg:p-0 lg:gap-0">
                 <div className="flex justify-start self-stretch">
-                    <div className={`${divCss} w-[145px] rotate-[-16.581deg] bg-[#582D2D] mb-[11px]   md:mb-6 md:px-[26.554px] md:w-fit`} >
+                    <motion.div
+                        initial={{ opacity: 0, rotate: -16.581 }}
+                        whileInView={{ y: 0, opacity: 1, rotate: 16.581, margin: 0}}
+                        transition={{ type: "spring", stiffness: 60, damping: 7, duration: 0.3, mass: 1 }}
+                        viewport={{ amount: 0.8, once: true }}
+                        className={`${divCss} w-[145px] rotate-[-16.581deg] bg-[#582D2D] mb-[11px] md:mb-6 md:px-[26.554px] md:w-fit`}
+                    >
                         <p className={`${textCss} md:text-[3rem] md:leading-0`}>Governmental</p>
-                    </div>
+                    </motion.div>
+
                     
                     <div className="flex flex-col items-center">
                         <p className="text-[#FFF] leading-[1rem] md:text-[3rem] md:leading-[3rem]">vs</p>

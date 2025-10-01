@@ -2,40 +2,27 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-// const data = [
-//     {
-//         image: "/englishTemplate.png",
-//         text: "English",
-//         docFile: "/docs/GazaChildrenAid(English).pdf"
-//     },
-//     {
-//         image: "/germanTemplate.png",
-//         text: "German",
-//         docFile: "docs/GazaChildrenAid(German).pdf"
-//     },
-// ];
-
 const data = {
     "EU": [
         {
-            image: "/englishTemplate.png",
+            image: "/EUenglish.png",
             text: "English",
             docFile: "/docs/EUSanctions(English).pdf",
         },
         {
-            image: "/germanTemplate.png",
+            image: "/EUgerman.png",
             text: "German",
             docFile: "docs/EUSanktionen(German).pdf",
         }
     ],
     "Gaza": [
         {
-            image: "/englishTemplate.png",
+            image: "/GazaChildrenEnglish.png",
             text: "English",
             docFile: "/docs/GazaChildrenAid(English).pdf"
         },
         {
-            image: "/germanTemplate.png",
+            image: "/GazaChildrenGerman.png",
             text: "German",
             docFile: "docs/GazaChildrenAid(German).pdf"
         }
