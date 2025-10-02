@@ -26,20 +26,26 @@ export default function PrepareEmail({reference, buttonNumber}) {
     }
 
     function handleBtnClick() {
-        setClickCount(clickCount+1);
+  // Check if template is selected
+  if (!buttonNumber) {
+    alert("Please select your template first!"); // ⚠️ Show alert
+    return; // stop user from navigating
+  }
 
-        if (nameEmail.email) {
-            if (!nameEmail.user_name && !showNameMsgOnce) {
-                setShowNameMsg(true);
-                setShowNameMsgOnce(true)
-                setTimeout(() => setShowNameMsg(false), 3000);
-           }
-           
-           if (clickCount==1) router.push(`/mail?buttonNumber${buttonNumber}`)
-
-            setIsButtonClicked(true);
-        }
+  if (nameEmail.email) {
+    // Optional: show name alert
+    if (!nameEmail.user_name && !showNameMsgOnce) {
+      setShowNameMsg(true);
+      setShowNameMsgOnce(true);
+      setTimeout(() => setShowNameMsg(false), 3000);
     }
+
+    // Proceed to next page
+    router.push(`/mail`);
+    setIsButtonClicked(true);
+  }
+}
+
 
     return (
         <div ref={reference} id="section4" className="flex flex-col gap-[23px] px-4 pb-8 pt-[70px] w-full justify-center items-start md:flex-row md:py-[60px] md:px-8 md:gap-6 lg:gap-8" style={{background: "linear-gradient(180deg, #1E1E1E 27.87%, #5F1717 98.29%)"}}>
@@ -83,14 +89,18 @@ export default function PrepareEmail({reference, buttonNumber}) {
                 </div>
 
                 <div className= {formDivCss}>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        className={`${inputFieldCss} font-palanquin`} 
-                        onChange={handleChange} 
-                        value={nameEmail.email} 
-                        required
-                    />
+                    <div className="flex justify-between w-full gap-9">
+                        <input 
+                            type="email" 
+                            name="email" 
+                            className={`${inputFieldCss} font-palanquin`} 
+                            onChange={handleChange} 
+                            value={nameEmail.email} 
+                            required
+                        />
+
+                        <span></span>
+                    </div>
                     <label className={labelCss} >Email*</label>
                 </div>
                 

@@ -5,24 +5,24 @@ import Image from "next/image";
 const data = {
     "EU": [
         {
-            image: "/EUenglish.png",
+            image: "/templateSS.png",
             text: "English",
             docFile: "/docs/EUSanctions(English).pdf",
         },
         {
-            image: "/EUgerman.png",
+            image: "/templateSS.png",
             text: "German",
             docFile: "docs/EUSanktionen(German).pdf",
         }
     ],
     "Gaza": [
         {
-            image: "/GazaChildrenEnglish.png",
+            image: "/templateSS.png",
             text: "English",
             docFile: "/docs/GazaChildrenAid(English).pdf"
         },
         {
-            image: "/GazaChildrenGerman.png",
+            image: "/templateSS.png",
             text: "German",
             docFile: "docs/GazaChildrenAid(German).pdf"
         }
@@ -65,7 +65,16 @@ export default function SelectEmail({reference, ScrollToPrepareMailFunc}) {
                     <button className= {`${btnCss} ${clickedSecondButton==1?"bg-[#4E4E4E]":"bg-[#941010]"}`} onClick={() => {handleClick(), ClickedSecond()}}>Gaza children aid</button>
                     <button 
                         className={`hidden w-full transition transition duration-500 ${!clickedId==1 && "opacity-0"} ${clickedFirstButton?"bg-[#266247]":"bg-[#4E4E4E]"} md:block md:text-[1.5rem] md:leading-[1.5rem] lg:text-[2.5rem] lg:leading-[2.5rem] md:w-[200px] lg:w-[350px]`} 
-                        onClick={() => clickedFirstButton==1?ScrollToPrepareMailFunc(1):ScrollToPrepareMailFunc(2)}>
+                        onClick={() => {
+                            if (clickedFirstButton==1 && clickedSecondButton==1) {
+                            alert("Please select a template!"); // ⚠️ Show alert
+                            return; // stop further execution
+                            } else if (clickedFirstButton === 1) {
+                            ScrollToPrepareMailFunc(1);
+                            } else {
+                            ScrollToPrepareMailFunc(2);
+                            }
+                        }}>
                             {clickedFirstButton==1?"prepare your mail":"unlock in few days (to avoid spam)"}
                     </button>
                 </div>

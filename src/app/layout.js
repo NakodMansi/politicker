@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${bebas_neue.variable} ${palanquin.variable} ${oswald.variable} antialiased`}
+        className={`${bebas_neue.variable} ${geistSans.variable} ${geistMono.variable} ${palanquin.variable} ${oswald.variable} antialiased`}
       >
         {children}
       </body>
