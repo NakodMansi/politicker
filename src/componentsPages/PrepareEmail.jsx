@@ -134,7 +134,7 @@ export default function PrepareEmail({reference, buttonNumber}) {
                 <button 
                     type="submit" 
                     name="submitBtn" 
-                    className={`${btnCss} ${isButtonClicked? "text-[#941010] bg-[#FFF] border border-[#941010]":"bg-[#941010] text-[#FFF]"} `}
+                    className={`${btnCss} ${isButtonClicked? "bg-[#5F0808]":"bg-[#941010] text-[#FFF]"} `}
                     onClick={handleBtnClick}
                 >
                     finalize emails
