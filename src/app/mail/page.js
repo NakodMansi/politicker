@@ -58,8 +58,8 @@ export default function SendEmail() {
     return [
       {
         name: "Gmail App",
-        appUrl: `googlegmail://co?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
-        webUrl: `https://mail.google.com/mail/?view=cm&fs=1&to=${emailStr}&su=${encodedSubject}&body=${encodedBody}`,
+        appUrl: `googlegmail://co?${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+        webUrl: `https://mail.google.com/mail/?view=cm&fs=1&bcc=${emailStr}&su=${encodedSubject}&body=${encodedBody}`,
       },
       {
         name: "Yahoo Mail",
