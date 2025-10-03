@@ -19,7 +19,7 @@ export default function SectionFour() {
                         alt="templates" 
                     />
 
-                    <p className="text-[#383535] text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(1.5rem,2vw,3rem)]" style={{textShadow: "-10px -5px 4px rgba(0, 0, 0, 0.25)"}}>
+                    <p className="text-[#6E6D6D] text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(1.5rem,2vw,3rem)]" style={{textShadow: "-10px -5px 4px rgba(0, 0, 0, 0.25)"}}>
                         smart politickers turn outrage into outreach
                     </p>
                 </div>

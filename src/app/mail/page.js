@@ -51,30 +51,30 @@ export default function SendEmail() {
   function getMailLinks(index) {
     if (!content[index]) return [];
     const { emails, subject, body } = content[index];
-    const emailStr = Array.isArray(emails) ? emails.join(",") : emails;
+    const emailStr = encodeURIComponent(Array.isArray(emails) ? emails.join(",") : emails);
     const encodedSubject = encodeURIComponent(subject);
     const encodedBody = encodeURIComponent(body);
 
     return [
       {
         name: "Gmail App",
-        appUrl: `googlegmail://co?${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+        appUrl: `mailto:?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
         webUrl: `https://mail.google.com/mail/?view=cm&fs=1&bcc=${emailStr}&su=${encodedSubject}&body=${encodedBody}`,
       },
       {
         name: "Yahoo Mail",
-        appUrl: `ymail://mail/compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
-        webUrl: `https://compose.mail.yahoo.com/?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+        appUrl: `ymail://mail/compose?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+        webUrl: `https://compose.mail.yahoo.com/?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
       },
       {
         name: "Outlook",
-        appUrl: `ms-outlook://compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
-        webUrl: `https://outlook.office.com/mail/deeplink/compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+        appUrl: `ms-outlook://compose?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+        webUrl: `https://outlook.office.com/mail/deeplink/compose?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
       },
       {
         name: "Default Mail",
-        appUrl: `mailto:${emailStr}?subject=${encodedSubject}&body=${encodedBody}`,
-        webUrl: `mailto:${emailStr}?subject=${encodedSubject}&body=${encodedBody}`,
+        appUrl: `mailto:?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+        webUrl: `mailto:?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
       },
     ];
   }
@@ -113,6 +113,7 @@ export default function SendEmail() {
     <>
       <Header />
       <div className="flex flex-col gap-[58px] justify-center items-start py-[80px] px-[30px] w-full bg-[#FFF] lg:px-8 lg:gap-10">
+        {/* header */}
         <header className="flex flex-col gap-1 justify-center items-center self-stretch">
           <h1 className="text-[#383535] text-[clamp(2.5rem,3vw,4rem)] leading-[clamp(2.5rem,3vw,4rem)]">
             3. Finalize email
@@ -128,6 +129,7 @@ export default function SendEmail() {
               key={index}
               className="flex items-center justify-center gap-11 px-6 self-stretch md:w-full md:p-0"
             >
+              {/* for tab view */}
               <div className="flex flex-col gap-2 justify-center items-center w-full md:flex-col-reverse lg:gap-6">
                 <p
                   className="text-[#383535] text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(1.2rem,2vw,3rem)] md:text-center"
@@ -156,6 +158,7 @@ export default function SendEmail() {
                 </button>
               </div>
 
+              {/* for mobile view */}
               <Link href={`/finalizeEmail?templateNo=${index}`}>
                 <Image
                   src="/englishTemplate.png"
