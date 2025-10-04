@@ -96,6 +96,11 @@ function SendEmailPage( {userName} ) {
         webUrl: `https://outlook.office.com/mail/deeplink/compose?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
       },
       {
+        name: "Proton Mail",
+        appUrl: `mailto:?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+        webUrl: `https://mail.proton.me/u/0/?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+      },
+      {
         name: "Default Mail",
         appUrl: `mailto:?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
         webUrl: `mailto:?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
