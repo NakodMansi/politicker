@@ -3,28 +3,37 @@ import React, { Suspense } from "react";
 import Header from "@/componentsPages/Header";
 import Footer from "@/componentsPages/Footer";
 import ContactUs from "@/componentsPages/ContactUs";
-import Content from "../mail/content.json";
-
-// Data for form
-const data = ["Create a proton mail", "Recipients (bcc)", "Subject","Email"];
+import content from "../mail/content.json";
 
 // Client-side component to handle searchParams
-function ContactUsWrapper({ data, inputValues }) {
-  const { useSearchParams } = require("next/navigation"); // dynamically require if needed
+function ContactUsWrapper() {
+  const { useSearchParams } = require("next/navigation");
   const searchParams = useSearchParams();
-  const templateNo = searchParams.get("templateNo");
+
+  const templateNo = parseInt(searchParams.get("templateNo")) || 0;
+  const group = searchParams.get("group") || "EU"; // default group
+  const committees = Object.keys(content[group] || {});
+
+  const selectedCommitteeKey = committees[templateNo] || committees[0];
+
+  const inputValues = selectedCommitteeKey
+    ? [content[group][selectedCommitteeKey]]
+    : [];
+
+  const data = ["Create a proton mail", "Recipients (bcc)", "Subject", "Email"];
 
   return (
     <ContactUs
-      heading="3. finalize your emails"
-      button1="create a proton mail"
-      button2="next email"
+      heading="3. Finalize your emails"
+      button1="Create a Proton Mail"
+      button2="Next Email"
       contactUsData={data}
       inputValues={inputValues}
-      templateNo={templateNo}
+      templateNo={0} // only one template per selectedCommitteeKey
       showProtonMail={false}
       showCopyImage={true}
       show={true}
+      committeeName = {selectedCommitteeKey}
     />
   );
 }
@@ -34,7 +43,7 @@ export default function FinalizeEmail() {
     <>
       <Header />
       <Suspense fallback={<div>Loading email form...</div>}>
-        <ContactUsWrapper data={data} inputValues={Content} />
+        <ContactUsWrapper />
       </Suspense>
       <Footer />
     </>

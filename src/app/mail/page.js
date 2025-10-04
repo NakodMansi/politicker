@@ -14,15 +14,21 @@ const committees = [
   { key: "EU Committee", label: "EU Matters Committee" },
 ];
 
-export default function SendEmail() {
+// Wrapper to read search params
+function GetUserName() {
+  const searchParams = useSearchParams();
+  const userName = searchParams.get("username") || "User";
+
+  return <SendEmailPage userName={userName} />;
+}
+
+function SendEmailPage( {userName} ) {
   const [screenSize, setScreenSize] = useState(0);
   const [step, setStep] = useState(1);
   const [showMailOptions, setShowMailOptions] = useState(false);
   const [selectedCommitteeKey, setSelectedCommitteeKey] = useState(null);
   const [selectedGroup, setSelectedGroup] = useState("EU");
   const [contentData, setContentData] = useState({});
-  const searchParams = useSearchParams();
-  const userName = searchParams.get("username") || "User";
 
   // Load stored content and step
   useEffect(() => {
@@ -231,5 +237,13 @@ export default function SendEmail() {
       <Suspense fallback={<div>Loading...</div>} />
       <Footer />
     </>
+  );
+}
+
+export default function SendEmail() {
+  return (
+    <Suspense fallback={<div>Loading user data...</div>}>
+      <GetUserName />
+    </Suspense>
   );
 }

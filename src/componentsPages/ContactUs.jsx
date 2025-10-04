@@ -12,6 +12,7 @@ export default function ContactUs({
   showProtonMail,
   showCopyImage,
   show,
+  committeeName 
 }) {
   // CSS CLASSES
   const formDivCss =
@@ -210,7 +211,7 @@ export default function ContactUs({
         {show && (
           <div className="flex flex-col gap-[11px] items-start">
             <p className="text-[#000] text-[clamp(1.8rem,3vw,4vw)] leading-[clamp(3rem,3vw,4vw)] self-stretch">
-              3.1. eu-affairs committee
+              { committeeName } committee
             </p>
             <button
               type="button"
