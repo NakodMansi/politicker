@@ -14,7 +14,6 @@ export default function PrepareEmail({reference, buttonNumber}) {
     const [showNameMsg, setShowNameMsg] = useState(false);
     const [showNameMsgOnce, setShowNameMsgOnce] = useState(false);
     const [showEmailMsg, setShowEmailMsg] = useState(false);
-    const [clickCount, setClickCount] = useState(0);
     const [isButtonClicked, setIsButtonClicked] = useState(false);
 
     const router = useRouter();
@@ -26,25 +25,25 @@ export default function PrepareEmail({reference, buttonNumber}) {
     }
 
     function handleBtnClick() {
-  // Check if template is selected
-  if (!buttonNumber) {
-    alert("Please select your template first!"); // ⚠️ Show alert
-    return; // stop user from navigating
-  }
+        // Check if template is selected
+        if (!buttonNumber) {
+            alert("Please select your template first!"); // ⚠️ Show alert
+            return; // stop user from navigating
+        }
 
-  if (nameEmail.email) {
-    // Optional: show name alert
-    if (!nameEmail.user_name && !showNameMsgOnce) {
-      setShowNameMsg(true);
-      setShowNameMsgOnce(true);
-      setTimeout(() => setShowNameMsg(false), 3000);
+        if (nameEmail.email) {
+            // Optional: show name alert
+            if (!nameEmail.user_name && !showNameMsgOnce) {
+                setShowNameMsg(true);
+                setShowNameMsgOnce(true);
+                setTimeout(() => setShowNameMsg(false), 3000);
+            }
+
+            // Proceed to next page
+            router.push(`/mail?username=${nameEmail.user_name}`);
+            setIsButtonClicked(true);
+        }
     }
-
-    // Proceed to next page
-    router.push(`/mail`);
-    setIsButtonClicked(true);
-  }
-}
 
 
     return (
