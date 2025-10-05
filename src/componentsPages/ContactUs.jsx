@@ -83,7 +83,7 @@ export default function ContactUs({
       : template.emails.replace(/,/g, "");
     try {
       await navigator.clipboard.writeText(`${emails.trim()}`);
-      alert("Copied to clipboard!");
+      alert("Please paste it in bcc");
     } catch (err) {
       console.error("Failed to copy:", err);
     }
@@ -94,7 +94,7 @@ export default function ContactUs({
     const template = inputValues[selectedTemplate];
     try {
       await navigator.clipboard.writeText(`${template.subject}`);
-      alert("Copied to clipboard!");
+      alert("Please paste it in subject");
     } catch (err) {
       console.error("Failed to copy:", err);
     }
@@ -107,7 +107,7 @@ export default function ContactUs({
 
     try {
       await navigator.clipboard.writeText(body);
-      alert("Copied to clipboard!");
+      alert("Please paste it in body");
     } catch (err) {
       console.error("Failed to copy:", err);
     }
@@ -136,6 +136,11 @@ export default function ContactUs({
         name: "Outlook",
         appUrl: `ms-outlook://compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
         webUrl: `https://outlook.office.com/mail/deeplink/compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+      },
+      {
+        name: "Proton",
+        appUrl: `protonmail://compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+        webUrl: `https://mail.proton.me/u/0/inbox?compose=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`
       },
       {
         name: "Default Mail",
@@ -217,6 +222,7 @@ export default function ContactUs({
               className={inputFieldCss}
               value={formData.email}
               onChange={handleChange}
+              readonly
             />
             <label className={labelCss}>{contactUsData[1]}</label>
           </div>
@@ -246,7 +252,7 @@ export default function ContactUs({
           </div>
         )}
 
-        <p className="text-[#383535] text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(3rem,4vw,4.5rem)]">
+        <p className="text-[#383535] text-[clamp(1.2rem,2vw,3rem)] leading-[clamp(2.5rem,4vw,4.5rem)] mb-[-10px]">
           OR COPY MANUALLY
         </p>
 
@@ -299,6 +305,7 @@ export default function ContactUs({
                     : inputValues[selectedTemplate].emails.replace(/,/g, ";")
                   : formData.email
               }
+              readonly
               onChange={handleChange}
             />
 
@@ -326,6 +333,7 @@ export default function ContactUs({
               value={
                 inputValues?.[selectedTemplate]?.subject || formData.subject
               }
+              readonly
               onChange={handleChange}
             />
             {showCopyImage && (
@@ -352,6 +360,7 @@ export default function ContactUs({
               inputValues?.[selectedTemplate]?.body.replace("{Ihr Unterstützend username}", username) || formData.message
             }
             onChange={handleChange}
+            readonly
             style={{ flex: windowWidth < 769 ? 0 : 1 }}
           />
           {showCopyImage && (

@@ -96,7 +96,7 @@ export default function SelectEmail({reference, ScrollToPrepareMailFunc}) {
                                         onClick={() => openDoc(item.docFile)}
                                     />
 
-                                    <p className="text-[#A3A3A3] font-palanquin font-medium text-[clamp(0.6rem,2vw,4rem)] leading-[clamp(1.5rem,2vw,4rem)]">{item.text}</p>
+                                    <p className="text-[#A3A3A3] font-palanquin font-medium text-[clamp(0.8rem,2vw,4rem)] leading-[clamp(1.7rem,2vw,4rem)]">{item.text}</p>
                                 </div>
                             ))
                         }

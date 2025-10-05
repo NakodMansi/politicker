@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 export default function PrepareEmail({reference, buttonNumber}) {
     const formDivCss = "flex flex-col items-start self-stretch lg:gap-2 relative";
     const inputFieldCss = "py-3 px-4 h-[44px] rounded-[10px] flex-[1_0_0] border border-[#5C5959] w-full focus:outline-none text-[#5C5959] lg:h-[58px] lg:p-4";
-    const labelCss = "text-[#4E4E4E] font-palanquin text-[clamp(0.6rem,2vw,3rem)] leading-[clamp(1.3rem,2vw,3rem)]";
+    const labelCss = "text-[#4E4E4E] font-palanquin text-[clamp(0.8rem,2vw,3rem)] leading-[clamp(1.5rem,2vw,3rem)]";
     const btnCss = "p-[9.5px] text-[clamp(1.2rem,2vw,4rem)] leading-[clamp(1.2rem,2vw,4rem)] rounded-[10px] w-full md:p-4 md:w-[236px]";
 
     const [nameEmail, setName] = useState({user_name: "", email: ""});
@@ -88,6 +88,7 @@ async function handleBtnClick() {
                             className={`${inputFieldCss} w-[70%] font-palanquin`} 
                             value={nameEmail.user_name} 
                             onChange={handleChange}
+                            required
                         />
                         <Image 
                             src="Frame.svg" 
@@ -101,7 +102,7 @@ async function handleBtnClick() {
                     
                     {
                         showNameMsg && 
-                        <div className={`p-2 w-fit bg-[#515050] absolute top-[5px] right-[50px] text-[#FFF] font-palanquin text-[0.6rem] transition-all duration-500`}>
+                        <div className={`p-2 w-fit bg-[#515050] absolute bottom-[75px] right-[0px] rounded-[10px] text-[#FFF] font-palanquin text-[0.6rem] transition-all duration-500`}>
                             <p>Including your name in your letter makes </p>
                             <p className="font-semibold"> it more believable</p> 
                         </div>
@@ -126,29 +127,33 @@ async function handleBtnClick() {
                 </div>
                 
                 <div className= {formDivCss}>
-                    <a href="https://account.proton.me/start?ref=pme_lp_b2c_proton_menu" target="_blank" className="w-full" >
-                        <div className="flex justify-between gap-5 w-full">
-                            <button
-                                type="button"
-                                className={`${inputFieldCss} border-[#941010] text-[#941010] tracking-wide text-[clamp(0.9rem,2vw,3rem)] leading-[clamp(1.2rem,2vw,3rem)]`}
-                            >
-                                create a proton mail first
-                            </button>
+                    <div className="flex justify-between gap-5 w-full">
+                        <a href="https://account.proton.me/start?ref=pme_lp_b2c_proton_menu" target="_blank" className="w-full" >
+                        <button
+                            type="button"
+                            className={`${inputFieldCss} border-[#941010] text-[#941010] tracking-wide text-[clamp(0.9rem,2vw,3rem)] leading-[clamp(1.2rem,2vw,3rem)]`}
+                        >
+                            create a proton mail first
+                        </button>
+                        </a>
 
-                            <Image 
-                                src="/Frame2.svg" 
-                                width={20} 
-                                height={20} 
-                                alt="Frame Icon" 
-                                onMouseOver= {() => {setShowEmailMsg(true)}}
-                                onMouseOut= {() => {setShowEmailMsg(false)}}
-                            />
-                        </div>
-                    
-                        <div className={`p-2 w-fit bg-[#515050] absolute top-[5px] right-[50px] text-[#FFF] font-palanquin text-[0.4rem] transition duration-500  ${showEmailMsg?"flex":"hidden"}`}>
+                        <Image 
+                            src="/Frame2.svg" 
+                            width={20} 
+                            height={20} 
+                            alt="Frame Icon" 
+                            onMouseOver= {() => {setShowEmailMsg(true)}}
+                            onMouseOut= {() => {setShowEmailMsg(false)}}
+                        />
+                    </div>
+                
+                    {
+                        showEmailMsg && 
+                        
+                        <div className={`p-2 w-fit bg-[#515050] absolute bottom-[70px] right-[0px] rounded-[10px] text-[#FFF] font-palanquin text-[0.6rem] transition duration-500`}>
                             <p>Don’t want to use your personal email? Try Proton Mail — more secure with end-to-end encryption.</p>
                         </div>
-                    </a>
+                    }
                     <label className={labelCss} >Do you need Proton Mail? (optional)</label>
                 </div>
 

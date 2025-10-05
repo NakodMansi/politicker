@@ -114,7 +114,7 @@ export default function Chessboard() {
 
                   {/* Back */}
                   <div
-                    className={`absolute text-[#000] inset-0 flex justify-center rounded-[2px] items-center bg-white p-3 font-palanquin text-[clamp(0.4rem,1vw,2vw)] leading-[clamp(0.5rem,1vw,2vw)]`}
+                    className={`absolute text-[#000] inset-0 flex justify-center rounded-[2px] items-center bg-white p-3 font-palanquin ${index==3? "text-[clamp(0.4rem,1vw,2vw)]":"text-[clamp(0.5rem,1vw,2vw)]" } leading-[clamp(0.5rem,1vw,2vw)]`}
                     style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)", whiteSpace: "pre-wrap" }}
                   >
                     {card.back}

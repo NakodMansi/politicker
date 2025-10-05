@@ -20,13 +20,18 @@ export default function ContactUs({
   const inputFieldCss =
     "py-3 pl-4 pr-10 h-[44px] rounded-[10px] flex-[1_0_0] border border-[#5C5959] w-full focus:outline-none text-[#5C5959] lg:h-[58px] lg:p-4";
   const labelCss =
-    "text-[#4E4E4E] font-palanquin text-[clamp(0.6rem,2vw,3rem)] leading-[clamp(1.3rem,2vw,3rem)]";
+    "text-[#4E4E4E] font-palanquin text-[clamp(0.8rem,2vw,3rem)] leading-[clamp(1.5rem,2vw,3rem)]";
   const btnCss =
     "p-[9.5px] text-[#FFF] bg-[#941010] text-[clamp(1.2rem,2vw,4rem)] leading-[clamp(1.2rem,2vw,4rem)] rounded-[10px] w-full md:p-4 md:w-[236px]";
 
   const [windowWidth, setWindowWidth] = useState(0);
   const [showMailOptions, setShowMailOptions] = useState(false);
-  const [selectedTemplate, setSelectedTemplate] = useState(templateNo || 0);
+  const [formData, setFormData] = useState({
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [showEmailMsg, setShowEmailMsg] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -35,39 +40,12 @@ export default function ContactUs({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const getMailLinks = (index) => {
-    if (!inputValues[index]) return [];
-    const { emails, subject, body } = inputValues[index];
-    const emailStr = Array.isArray(emails) ? emails.join(",") : emails;
-    const encodedSubject = encodeURIComponent(subject);
-    const encodedBody = encodeURIComponent(body);
-
-    return [
-      {
-        name: "Gmail App",
-        appUrl: `googlegmail://co?${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
-        webUrl: `https://mail.google.com/mail/?view=cm&fs=1&bcc=${emailStr}&su=${encodedSubject}&body=${encodedBody}`,
-      },
-      {
-        name: "Yahoo Mail",
-        appUrl: `ymail://mail/compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
-        webUrl: `https://compose.mail.yahoo.com/?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
-      },
-      {
-        name: "Outlook",
-        appUrl: `ms-outlook://compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
-        webUrl: `https://outlook.office.com/mail/deeplink/compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
-      },
-      {
-        name: "Default Mail",
-        appUrl: `mailto:${emailStr}?subject=${encodedSubject}&body=${encodedBody}`,
-        webUrl: `mailto:${emailStr}?subject=${encodedSubject}&body=${encodedBody}`,
-      },
-    ];
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const openMailPopup = () => setShowMailOptions(true);
-
+  
   const openMailApp = (appUrl, webUrl) => {
     const start = Date.now();
     window.location.href = appUrl;
@@ -78,56 +56,33 @@ export default function ContactUs({
     setShowMailOptions(false);
   };
 
-  // STATE used only inside form
-    const [formData, setFormData] = useState({
-      email: "",
-      subject: "",
-      message: "",
-    });
-    const [showEmailMsg, setShowEmailMsg] = useState(false);
-  
-    // FUNCTIONS used only inside form
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    };
-  
-    const handleEmailCopy = async () => {
-      if (!inputValues || !inputValues[selectedTemplate]) return;
-      const template = inputValues[selectedTemplate];
-      const emails = Array.isArray(template.emails)
-        ? template.emails.join(" ")
-        : template.emails.replace(/,/g, ";");
-      try {
-        await navigator.clipboard.writeText(`Emails: ${emails.trim()}`);
-        alert("Copied to clipboard!");
-      } catch (err) {
-        console.error("Failed to copy:", err);
-      }
-    };
-  
-    const handleSubjectCopy = async () => {
-      if (!inputValues || !inputValues[selectedTemplate]) return;
-      const template = inputValues[selectedTemplate];
-      try {
-        await navigator.clipboard.writeText(`Subject: ${template.subject}`);
-        alert("Copied to clipboard!");
-      } catch (err) {
-        console.error("Failed to copy:", err);
-      }
-    };
-  
-    const handleBodyCopy = async () => {
-      if (!inputValues || !inputValues[selectedTemplate]) return;
-      const template = inputValues[selectedTemplate];
-      try {
-        await navigator.clipboard.writeText(`Email Text: ${template.body}`);
-        alert("Copied to clipboard!");
-      } catch (err) {
-        console.error("Failed to copy:", err);
-      }
-    };
+  const getMailLinks = () => {
+    const { email, subject, message } = formData;
 
+    return [
+      {
+        name: "Gmail App",
+        appUrl: `googlegmail://co?to=${email}&subject=${subject}&body=${message}`,
+        webUrl: `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${message}`,
+      },
+      {
+        name: "Yahoo Mail",
+        appUrl: `ymail://mail/compose?to=${email}&subject=${subject}&body=${message}`,
+        webUrl: `https://compose.mail.yahoo.com/?to=${email}&subject=${subject}&body=${message}`,
+      },
+      {
+        name: "Outlook",
+        appUrl: `ms-outlook://compose?to=${email}&subject=${subject}&body=${message}`,
+        webUrl: `https://outlook.office.com/mail/deeplink/compose?to=${email}&subject=${subject}&body=${message}`,
+      },
+      {
+        name: "Default Mail",
+        appUrl: `mailto:${email}?subject=${subject}&body=${message}`,
+        webUrl: `mailto:${email}?subject=${subject}&body=${message}`,
+      },
+    ];
+  };
+  
   return (
     <div
       className="flex flex-col items-start gap-4 flex-1 w-full px-4 pb-4 md:flex-row md:py-10 md:px-8 md:gap-8 lg:py-[100px] lg:px-[100px]"
@@ -146,33 +101,18 @@ export default function ContactUs({
             onSubmit={(e) => e.preventDefault()}
             className="flex flex-col justify-center items-start self-stretch gap-[11px] flex-1 py-4 px-6 rounded-[5px] bg-[#FFF] md:py-6 md:gap-[30px] lg:p-6 lg:w-[33%] lg:gap-6"
           >
-            {show && (
-              <div className="flex flex-col gap-[11px] items-start">
-                <p className="text-[#000] text-[clamp(1.8rem,3vw,4vw)] leading-[clamp(3rem,3vw,4vw)] self-stretch">
-                  {contactUsData.committeeName} committee
-                </p>
-                <button
-                  type="button"
-                  className={btnCss}
-                  onClick={() => {
-                    setSelectedTemplate(templateNo ? parseInt(templateNo) : 0);
-                    openMailPopup();
-                  }}
-                >
-                  open filled template in mail app
-                </button>
-              </div>
-            )}
       
             {/* Mobile Proton Mail Button */}
               <div className={`${formDivCss} md:hidden`}>
-                <button
-                  type="button"
-                  className={`${inputFieldCss} border-[#941010] text-[#941010] tracking-wide text-[clamp(1rem,2vw,3rem)] leading-[clamp(1.2rem,2vw,3rem)]`}
-                >
-                  {contactUsData[0]}
-                </button>
-      
+                <a href="https://account.proton.me/start?ref=pme_lp_b2c_proton_menu" target="_blank" className="w-full" >
+                  <button
+                    type="button"
+                    className={`${inputFieldCss} border-[#941010] text-[#941010] tracking-wide text-[clamp(1rem,2vw,3rem)] leading-[clamp(1.2rem,2vw,3rem)]`}
+                  >
+                    {contactUsData[0]}
+                  </button>
+                </a>
+                
                 <Image
                   src="/Frame2.svg"
                   width={20}
@@ -202,13 +142,7 @@ export default function ContactUs({
                   type="text"
                   name="email"
                   className={`${inputFieldCss}  font-palanquin`}
-                  value={
-                    inputValues && inputValues[selectedTemplate]
-                      ? Array.isArray(inputValues[selectedTemplate].emails)
-                        ? inputValues[selectedTemplate].emails.join(";")
-                        : inputValues[selectedTemplate].emails.replace(/,/g, ";")
-                      : formData.email
-                  }
+                  value={formData.email}
                   onChange={handleChange}
                 />
                 {showCopyImage && (
@@ -232,7 +166,7 @@ export default function ContactUs({
                   type="text"
                   name="subject"
                   className={`${inputFieldCss}  font-palanquin`}
-                  value={inputValues?.[selectedTemplate]?.subject || formData.subject}
+                  value={formData.subject}
                   onChange={handleChange}
                 />
                 {showCopyImage && (
@@ -255,7 +189,7 @@ export default function ContactUs({
                 name="message"
                 rows="5"
                 className={`${inputFieldCss}  font-palanquin`}
-                value={inputValues?.[selectedTemplate]?.body || formData.message}
+                value={formData.message}
                 onChange={handleChange}
                 style={{ flex: windowWidth < 769 ? 0 : 1 }}
               />
@@ -273,16 +207,16 @@ export default function ContactUs({
             </div>
       
             {/* Submit */}
-            <button type="submit" name="submitBtn" className={btnCss}>
+            <button type="button" onClick={() => setShowMailOptions(true)} name="submitBtn" className={btnCss}>
               {button2}
             </button>
           </form>
 
-      {show && showMailOptions && selectedTemplate !== null && (
+      {showMailOptions && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col gap-3">
             <h2 className="text-xl font-bold mb-2">Choose a Mail App</h2>
-            {getMailLinks(selectedTemplate).map((link, idx) => (
+            {getMailLinks().map((link, idx) => (
               <button
                 key={idx}
                 type="button"

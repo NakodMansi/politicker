@@ -23,22 +23,32 @@ export default function SectionTwo() {
                         <Image src="/ChessImage.svg" width={100} height={100} alt="chess" className="w-[75px]  md:w-[210px] lg:w-[270px]"/>
                     </div>
 
-                    <p className="text-[#A3A3A3] relative z-[1] font-palanquin text-[clamp(0.9rem,2vw,3rem)] leading-[clamp(1.2rem,2vw,3rem)] md:w-[77%] lg:w-full">
+                    <div className="relative">
+                    <p className="text-[#A3A3A3] z-[1] font-palanquin text-[clamp(0.9rem,2vw,3rem)] leading-[clamp(1.2rem,2vw,3rem)] md:w-[77%] lg:w-full">
                         <span className="text-[#FFF] font-bold relative z-[1]">A politician; </span>
                         <span className="relative z-[1]">or</span>  
                         <span className="text-[#FFF] font-bold relative z-[1]"> a person </span>
                         <span className="relative z-[1]">engaging in activity directed towards acquiring power and influence.</span>
+                    </p>
 
-                        <div className="inline-flex flex-wrap gap-2 ml-[-296] relative bottom-[18px]">
-                            <motion.div className="w-[73px] h-[20px] bg-[#582d2d] inline-block"
-                                style= {{marginLeft: changeX}}
+                    
+                        <div className="flex flex-wrap gap-4 absolute top-0">
+                            <motion.div className="h-[20px] bg-[#582d2d]"
+                                initial = {{width: 0}}
+                                whileInView={{width: 73}}
+                                transition = {{duration: 3, ease: "easeInOut"}}
+                                viewport={{amout: 1}}
                             ></motion.div>
                         
-                            <motion.div className="w-[55px] h-[20px] bg-[#266247] inline-block"
+                            <motion.div className="h-[20px] bg-[#266247] absolute left-22"
                                 // style={{ marginLeft: 15}}
+                                initial = {{width: 0}}
+                                whileInView={{width: 55}}
+                                transition = {{duration: 3, ease: "easeInOut"}}
+                                viewport={{ amount: 1}}
                             ></motion.div>
                         </div>
-                    </p>
+                    </div>
                 </div>
                 
                 <div className="flex items-start">
