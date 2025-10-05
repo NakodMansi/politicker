@@ -24,26 +24,48 @@ export default function PrepareEmail({reference, buttonNumber}) {
         setName((prevValue) => ({...prevValue, [name]: value }));
     }
 
-    function handleBtnClick() {
-        // Check if template is selected
-        if (!buttonNumber) {
-            alert("Please select your template first!"); // ⚠️ Show alert
-            return; // stop user from navigating
-        }
+    async function handleSubmit() {
+    try {
+        const email = nameEmail.email;
+        const name = nameEmail.user_name;
+        const message = "";
 
-        if (nameEmail.email) {
-            // Optional: show name alert
-            if (!nameEmail.user_name && !showNameMsgOnce) {
-                setShowNameMsg(true);
-                setShowNameMsgOnce(true);
-                setTimeout(() => setShowNameMsg(false), 3000);
-            }
+        const res = await fetch("/api/saveEmail", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, name, message }),
+        });
 
-            // Proceed to next page
-            router.push(`/finalizeEmail/EUcommittee?username=${nameEmail.user_name}&useremail=${nameEmail.email}`);
-            setIsButtonClicked(true);
-        }
+        const data = await res.json();
+        console.log(data.message);
+    } catch (error) {
+        console.error("Error sending email:", error);
     }
+}
+
+async function handleBtnClick() {
+    // Check if template is selected
+    if (!buttonNumber) {
+        alert("Please select your template first!");
+        return;
+    }
+
+    if (!nameEmail.email) return;
+
+    // Optional: show name alert
+    if (!nameEmail.user_name && !showNameMsgOnce) {
+        setShowNameMsg(true);
+        setShowNameMsgOnce(true);
+        setTimeout(() => setShowNameMsg(false), 3000);
+    }
+
+    // Save email first
+    await handleSubmit();
+
+    // Proceed to next page
+    router.push(`/finalizeEmail/EUcommittee?username=${nameEmail.user_name}&useremail=${nameEmail.email}`);
+    setIsButtonClicked(true);
+}
 
 
     return (

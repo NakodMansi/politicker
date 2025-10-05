@@ -9,8 +9,6 @@ function EUcommittee() {
     const { useSearchParams } = require("next/navigation");
     const searchParams = useSearchParams();
 
-    console.log(content["EU"]);
-
     const group = searchParams.get("group") || "EU"; // default group
     const username = searchParams.get("username");
     const useremail = searchParams.get("useremail");
@@ -18,9 +16,6 @@ function EUcommittee() {
     const committees = Object.keys(content[group] || {}).slice(0, 3); // get first 3 committees
     const inputValues = committees.map((committeeKey) => content[group][committeeKey]);
     const selectedCommitteeKey = "3.1" + " "+ committees[0];
-
-    // console.log("Group: ",group);
-    // console.log(committees);
 
     const data = ["Create a proton mail", "Recipients (bcc)", "Subject", "Email"];
 
