@@ -13,7 +13,7 @@ export default function SectionTwo() {
         console.log(value);
     })
 
-    const changeX = useTransform(scrollY, [450, 700], [0, 280])
+    const changeX = useTransform(scrollY, [350, 750], [0, 460])
 
     return (
         <div className="flex flex-col justify-center items-center py-[64px] px-8 gap-[27px] md:py-[60px] md:px-[70px] lg:px-[200px]">
@@ -33,7 +33,7 @@ export default function SectionTwo() {
                         <span className="text-[#FFF] font-bold relative z-[1]"> a person </span>
                         <span className="relative z-[1]">engaging in activity directed towards acquiring power and influence.</span>
 
-                        <div className="inline-flex flex-wrap gap-2 ml-[-188] relative bottom-[18px]">
+                        <div className="inline-flex flex-wrap gap-2 ml-[-296] relative bottom-[18px]">
                             <motion.div className="w-[73px] h-[20px] bg-[#582d2d] inline-block"
                                 style= {{marginLeft: changeX}}
                             ></motion.div>
