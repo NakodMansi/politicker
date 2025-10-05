@@ -75,7 +75,7 @@ export default function ContactUs({
         webUrl: `mailto:${emailStr}?subject=${encodedSubject}&body=${encodedBody}`,
       },
     ];
-  };
+  }; 
 
   const openMailPopup = () => setShowMailOptions(true);
 
