@@ -349,7 +349,7 @@ export default function ContactUs({
             rows="5"
             className={inputFieldCss}
             value={
-              inputValues?.[selectedTemplate]?.body.replace("{username}", username) || formData.message
+              inputValues?.[selectedTemplate]?.body.replace("{Ihr Unterstützend username}", username) || formData.message
             }
             onChange={handleChange}
             style={{ flex: windowWidth < 769 ? 0 : 1 }}
