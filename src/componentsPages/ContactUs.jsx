@@ -307,9 +307,9 @@ export default function ContactUs({
                 width={20}
                 height={20}
                 src="/copyBtn.svg"
+                alt = "copy image"
                 className="absolute right-3 top-[13px]"
                 onClick={handleEmailCopy}
-                alt = "copy image"
               />
             )}
           </div>
@@ -335,6 +335,7 @@ export default function ContactUs({
                 src="/copyBtn.svg"
                 className="absolute right-3 top-[13px]"
                 onClick={handleSubjectCopy}
+                alt = "copy button"
               />
             )}
           </div>
@@ -360,6 +361,7 @@ export default function ContactUs({
               src="/copyBtn.svg"
               className="absolute right-3 top-[13px]"
               onClick={handleBodyCopy}
+              alt = "copy btn"
             />
           )}
           <label className={labelCss}>{contactUsData[3]}</label>
