@@ -65,6 +65,11 @@ export default function ContactUs({
         webUrl: `https://outlook.office.com/mail/deeplink/compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
       },
       {
+        name: "Proton Mail",
+        appUrl: `mailto:?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+        webUrl: `https://mail.proton.me/u/0/?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+      },
+      {
         name: "Default Mail",
         appUrl: `mailto:${emailStr}?subject=${encodedSubject}&body=${encodedBody}`,
         webUrl: `mailto:${emailStr}?subject=${encodedSubject}&body=${encodedBody}`,
