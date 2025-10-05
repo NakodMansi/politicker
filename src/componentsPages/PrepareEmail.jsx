@@ -40,7 +40,7 @@ export default function PrepareEmail({reference, buttonNumber}) {
             }
 
             // Proceed to next page
-            router.push(`/mail?username=${nameEmail.user_name}`);
+            router.push(`/finalizeEmail?username=${nameEmail.user_name}`);
             setIsButtonClicked(true);
         }
     }
