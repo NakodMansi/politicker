@@ -18,7 +18,7 @@ export default function ContactUs({
   const formDivCss =
     "flex flex-col items-start self-stretch lg:gap-2 relative";
   const inputFieldCss =
-    "py-3 pl-4 pr-10 h-[44px] rounded-[10px] flex-[1_0_0] border border-[#5C5959] w-full focus:outline-none text-[#5C5959] lg:h-[58px] lg:p-4";
+    "py-3 pl-4 pr-10 h-[44px] rounded-[10px] flex-[1_0_0] border border-[#5C5959] w-full font-palanquin focus:outline-none text-[#5C5959] lg:h-[58px] lg:p-4";
   const labelCss =
     "text-[#4E4E4E] font-palanquin text-[clamp(0.6rem,2vw,3rem)] leading-[clamp(1.3rem,2vw,3rem)]";
   const btnCss =
@@ -289,6 +289,7 @@ export default function ContactUs({
                 src="/copyBtn.svg"
                 className="absolute right-3 top-[13px]"
                 onClick={handleEmailCopy}
+                alt = "copy image"
               />
             )}
           </div>

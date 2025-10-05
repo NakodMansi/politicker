@@ -14,7 +14,9 @@ function ContactUsWrapper() {
   const group = searchParams.get("group") || "EU"; // default group
   const committees = Object.keys(content[group] || {});
 
-  const selectedCommitteeKey = committees[templateNo] || committees[0];
+  const index= templateNo+1;
+
+  const selectedCommitteeKey = "3." + index +" "+ committees[templateNo] || committees[0];
 
   const inputValues = selectedCommitteeKey
     ? [content[group][selectedCommitteeKey]]
