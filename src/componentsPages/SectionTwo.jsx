@@ -9,10 +9,6 @@ export default function SectionTwo() {
 
     const {scrollY }= useScroll();
 
-    useMotionValueEvent(scrollY, "change", (value) => {
-        console.log(value);
-    })
-
     const changeX = useTransform(scrollY, [350, 750], [0, 460])
 
     return (

@@ -45,7 +45,7 @@ export default function Explanation() {
                     height={100} 
                     alt="englishTemplate" 
                     style={{boxShadow: "13.58px 13.58px 2.316px 0 #994242"}}
-                    className="w-[100px]"
+                    className="w-[130px]"
                 />
 
                 <div className="flex flex-col justify-center items-center self-stretch gap-2">
