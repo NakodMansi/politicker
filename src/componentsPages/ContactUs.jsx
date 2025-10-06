@@ -129,8 +129,8 @@ export default function ContactUs({
       },
       {
         name: "Yahoo Mail",
-        appUrl: `ymail://mail/compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
-        webUrl: `https://compose.mail.yahoo.com/?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+        appUrl: `ymail://mail/compose?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+        webUrl: `https://mail.yahoo.com/d/compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
       },
       {
         name: "Outlook",
@@ -162,7 +162,9 @@ export default function ContactUs({
     setShowMailOptions(false);
   };
 
-  async function sendEmail() {
+  // MAIL SENDING FUNCTION
+async function sendEmail() {
+  try {
     const res = await fetch("/api/sendEmail", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -174,8 +176,18 @@ export default function ContactUs({
     });
 
     const data = await res.json();
-    console.log(data);
+
+    if (res.ok) {
+      alert("✅ Reminder email sent successfully!");
+    } else {
+      alert(`❌ Failed to send email: ${data.error || "Unknown error"}`);
+    }
+  } catch (error) {
+    console.error("Error sending email:", error);
+    alert("❌ Something went wrong while sending the email.");
   }
+}
+
 
   return (
     <div
@@ -400,7 +412,7 @@ export default function ContactUs({
       {show && showMailOptions && selectedTemplate !== null && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col gap-3">
-            <h2 className="text-xl font-bold mb-2">Choose a Mail App</h2>
+            <h2 className="text-xl font-bold mb-2 text-[#000]">Choose a Mail App</h2>
             {getMailLinks(selectedTemplate).map((link, idx) => (
               <button
                 key={idx}
@@ -413,7 +425,7 @@ export default function ContactUs({
             ))}
             <button
               type="button"
-              className="mt-4 px-4 py-2 bg-gray-300 rounded-md"
+              className="mt-4 px-4 py-2 bg-gray-300 rounded-md text-black"
               onClick={() => setShowMailOptions(false)}
             >
               Cancel
