@@ -76,6 +76,11 @@ export default function ContactUs({
         webUrl: `https://outlook.office.com/mail/deeplink/compose?to=${email}&subject=${subject}&body=${message}`,
       },
       {
+        name: "Proton",
+        appUrl: `protonmail://compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+        webUrl: `https://mail.proton.me/u/0/inbox?compose=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`
+      },
+      {
         name: "Default Mail",
         appUrl: `mailto:${email}?subject=${subject}&body=${message}`,
         webUrl: `mailto:${email}?subject=${subject}&body=${message}`,
@@ -142,8 +147,8 @@ export default function ContactUs({
                   type="text"
                   name="email"
                   className={`${inputFieldCss}  font-palanquin`}
-                  value={formData.email}
-                  onChange={handleChange}
+                  value="martamfam@proton.me"
+                  readonly
                 />
                 {showCopyImage && (
                   <Image
