@@ -25,7 +25,7 @@ export default function ContactUs({
   const labelCss =
     "text-[#4E4E4E] font-palanquin text-[clamp(0.8rem,2vw,3rem)] leading-[clamp(1.5rem,2vw,3rem)]";
   const btnCss =
-    "p-[9.5px] text-[#FFF] bg-[#941010] text-[clamp(1.2rem,2vw,4rem)] leading-[clamp(1.2rem,2vw,4rem)] rounded-[10px] w-full md:p-4 md:w-[236px]";
+    "p-[9.5px] text-[clamp(1.2rem,2vw,4rem)] leading-[clamp(1.2rem,2vw,4rem)] rounded-[10px] w-full md:p-4 md:w-[236px]";
 
   // STATE
   const [formData, setFormData] = useState({
@@ -36,6 +36,7 @@ export default function ContactUs({
   const [showEmailMsg, setShowEmailMsg] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
   const [step, setStep] = useState(1);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   // Mail popup state
   const [showMailOptions, setShowMailOptions] = useState(false);
@@ -254,10 +255,11 @@ export default function ContactUs({
             </p>
             <button
               type="button"
-              className={btnCss}
+              className={`${btnCss} ${isButtonClicked? "bg-[#5F0808]":"bg-[#941010] text-[#FFF]"}`}
               onClick={() => {
                 setSelectedTemplate(templateNo ? parseInt(templateNo) : 0);
                 openMailPopup();
+                setIsButtonClicked(true);
               }}
             >
               open filled template in mail app
@@ -393,7 +395,6 @@ export default function ContactUs({
           <button
             type="button"
             name="submitBtn"
-            className={btnCss}
             onClick={async (e) => {
               e.preventDefault(); // safety against unwanted form submit
 
@@ -402,7 +403,9 @@ export default function ContactUs({
               } else {
                 window.location.href = `/finalizeEmail/${nextPage}?username=${username}&useremail=${useremail}`;
               }
+              setIsButtonClicked(true);
             }}
+            className={`${btnCss} ${isButtonClicked? "bg-[#5F0808]":"bg-[#941010] text-[#FFF]"}`}
           >
             {button2}
           </button>
@@ -418,8 +421,8 @@ export default function ContactUs({
               <button
                 key={idx}
                 type="button"
-                className="px-4 py-2 bg-[#941010] text-white rounded-md text-center"
-                onClick={() => openMailApp(link.appUrl, link.webUrl)}
+                className={`px-4 py-2 rounded-md text-center ${isButtonClicked? "bg-[#5F0808]":"bg-[#941010] text-[#FFF]"}`}
+                onClick={() => {openMailApp(link.appUrl, link.webUrl), setIsButtonClicked(true)}}
               >
                 {link.name}
               </button>

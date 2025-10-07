@@ -32,6 +32,7 @@ export default function ContactUs({
     message: "",
   });
   const [showEmailMsg, setShowEmailMsg] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -233,8 +234,8 @@ export default function ContactUs({
             ))}
             <button
               type="button"
-              className="mt-4 px-4 py-2 bg-gray-300 rounded-md"
-              onClick={() => setShowMailOptions(false)}
+              className={`mt-4 px-4 py-2 bg-gray-300 rounded-md ${isButtonClicked? "bg-[#5F0808]":"bg-[#941010] text-[#FFF]"}`}
+              onClick={() => {setShowMailOptions(false);setIsButtonClicked(true);}}
             >
               Cancel
             </button>
