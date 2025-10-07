@@ -50,7 +50,7 @@ async function handleBtnClick() {
         return;
     }
 
-    if (!nameEmail.email) return;
+    if (!nameEmail.email || !nameEmail.user_name) return;
 
     // Optional: show name alert
     if (!nameEmail.user_name && !showNameMsgOnce) {
@@ -107,7 +107,7 @@ async function handleBtnClick() {
                             <p className="font-semibold"> it more believable</p> 
                         </div>
                     }
-                    <label className={labelCss} >Name (recommended)</label>
+                    <label className={labelCss} >Name*</label>
                 </div>
 
                 <div className= {formDivCss}>
