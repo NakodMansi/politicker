@@ -6,17 +6,19 @@ export async function POST(req) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "mansivnakod1007@gmail.com",
-      pass: process.env.GMAIL_APP_PASSWORD, // App Password
+      user: "mansivnakod1007@gmail.com", // your Gmail
+      pass: process.env.GMAIL_APP_PASSWORD, // your app password from .env.local
     },
   });
 
+  console.log("App password: ",process.env.GMAIL_APP_PASSWORD)
+
   try {
     await transporter.sendMail({
-      from: "Mansi <mansivnakod1007@gmail.com>",
-      to,       // email of the recipient
-      subject,  // email subject
-      text,     // email body
+      from: "mansivnakod1007@gmail.com",
+      to,
+      subject,
+      text,
     });
 
     return new Response(JSON.stringify({ message: "Email sent successfully!" }), {
@@ -24,8 +26,8 @@ export async function POST(req) {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.error("Error sending email:", error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    console.error(error);
+    return new Response(JSON.stringify({ error: "Failed to send email" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });
