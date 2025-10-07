@@ -23,7 +23,7 @@ export default function ContactUs({
   const inputFieldCss =
     "py-3 pl-4 pr-10 h-[44px] rounded-[10px] flex-[1_0_0] border border-[#5C5959] w-full font-palanquin focus:outline-none text-[#5C5959] lg:h-[58px] lg:p-4";
   const labelCss =
-    "text-[#4E4E4E] font-palanquin text-[clamp(0.6rem,2vw,3rem)] leading-[clamp(1.3rem,2vw,3rem)]";
+    "text-[#4E4E4E] font-palanquin text-[clamp(0.8rem,2vw,3rem)] leading-[clamp(1.5rem,2vw,3rem)]";
   const btnCss =
     "p-[9.5px] text-[#FFF] bg-[#941010] text-[clamp(1.2rem,2vw,4rem)] leading-[clamp(1.2rem,2vw,4rem)] rounded-[10px] w-full md:p-4 md:w-[236px]";
 
@@ -103,7 +103,7 @@ export default function ContactUs({
   const handleBodyCopy = async () => {
     if (!inputValues || !inputValues[selectedTemplate]) return;
     const template = inputValues[selectedTemplate];
-    const body = template.body.replace("{username}", username);
+    const body = template.body.replace("{Ihr Unterstützend username}", username);
 
     try {
       await navigator.clipboard.writeText(body);
@@ -119,7 +119,9 @@ export default function ContactUs({
     const { emails, subject, body } = inputValues[index];
     const emailStr = Array.isArray(emails) ? emails.join(",") : emails;
     const encodedSubject = encodeURIComponent(subject);
-    const encodedBody = encodeURIComponent(body);
+    
+    const finalBody = body.replace("{Ihr Unterstützend username}",username);
+    const encodedBody = encodeURIComponent(finalBody);
 
     return [
       {
@@ -163,31 +165,30 @@ export default function ContactUs({
   };
 
   // MAIL SENDING FUNCTION
-async function sendEmail() {
-  try {
-    const res = await fetch("/api/sendEmail", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        to: `${useremail}`,
-        subject: "Hello from Next.js!",
-        text: "This is a test email.",
-      }),
-    });
+  async function sendEmail() {
+    try {
+      const res = await fetch("/api/sendEmail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to: `${useremail}`,
+          subject: "Hello from Next.js!",
+          text: "This is a test email.",
+        }),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (res.ok) {
-      alert("✅ Reminder email sent successfully!");
-    } else {
-      alert(`❌ Failed to send email: ${data.error || "Unknown error"}`);
+      if (res.ok) {
+        alert("✅ Reminder email sent successfully!");
+      } else {
+        alert(`❌ Failed to send email: ${data.error || "Unknown error"}`);
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      alert("❌ Something went wrong while sending the email.");
     }
-  } catch (error) {
-    console.error("Error sending email:", error);
-    alert("❌ Something went wrong while sending the email.");
   }
-}
-
 
   return (
     <div
