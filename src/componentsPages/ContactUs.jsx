@@ -79,7 +79,7 @@ export default function ContactUs({
     if (!inputValues || !inputValues[selectedTemplate]) return;
     const template = inputValues[selectedTemplate];
     const emails = Array.isArray(template.emails)
-      ? template.emails.join(" ")
+      ? template.emails.join(", ")
       : template.emails.replace(/,/g, "");
     try {
       await navigator.clipboard.writeText(`${emails.trim()}`);
@@ -314,7 +314,7 @@ export default function ContactUs({
               value={
                 inputValues && inputValues[selectedTemplate]
                   ? Array.isArray(inputValues[selectedTemplate].emails)
-                    ? inputValues[selectedTemplate].emails.join(" ")
+                    ? inputValues[selectedTemplate].emails.join(", ")
                     : inputValues[selectedTemplate].emails.replace(/,/g, ";")
                   : formData.email
               }
