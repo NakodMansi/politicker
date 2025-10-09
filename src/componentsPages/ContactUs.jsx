@@ -150,11 +150,6 @@ const handleBodyCopy = async () => {
         webUrl: `https://mail.google.com/mail/?view=cm&fs=1&bcc=${emailStr}&su=${encodedSubject}&body=${encodedBody}`,
       },
       {
-        name: "Yahoo Mail",
-        appUrl: `ymail://mail/compose?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
-        webUrl: `https://mail.yahoo.com/d/compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
-      },
-      {
         name: "Outlook",
         appUrl: `ms-outlook://compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
         webUrl: `https://outlook.office.com/mail/deeplink/compose?to=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
