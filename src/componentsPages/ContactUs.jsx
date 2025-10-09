@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function ContactUs({
   heading,
@@ -38,7 +39,11 @@ export default function ContactUs({
   const [step, setStep] = useState(1);
   const [isFirstButtonClicked, setIsFirstButtonClicked] = useState(false);
   const [isSecondButtonClicked, setIsSecondButtonClicked] = useState(false);
+  const [isThirdButtonClicked, setIsThirdButtonClicked] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(null);
+  const location = usePathname();
+
+  console.log(location);
 
   // Mail popup state
   const [showMailOptions, setShowMailOptions] = useState(false);
@@ -195,15 +200,40 @@ const handleBodyCopy = async () => {
       const data = await res.json();
 
       if (res.ok) {
-        alert("✅ Reminder email sent successfully!");
+        console.log("✅ Reminder email sent successfully!");
       } else {
-        alert(`❌ Failed to send email: ${data.error || "Unknown error"}`);
+        console.log(`❌ Failed to send email: ${data.error || "Unknown error"}`);
       }
     } catch (error) {
       console.error("Error sending email:", error);
-      alert("❌ Something went wrong while sending the email.");
+      console.log("❌ Something went wrong while sending the email.");
     }
   }
+
+  async function sendThankYouEmail(useremail, username) {
+  try {
+    const res = await fetch("/api/sendEmail", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        to: useremail,
+        subject: "Thank You for Your Support!",
+        text: `Dear ${username || "Supporter"},\n\nThank you for taking the time to send your message to the Human Rights committee. Your effort makes a difference!\n\nBest regards,\nThe Campaign Team`,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      console.log("Thank-you email sent successfully!");
+    } else {
+      console.log(`Failed to send thank-you email: ${data.error || "Unknown error"}`);
+    }
+  } catch (error) {
+    console.error("Error sending thank-you email:", error);
+    console.log("Something went wrong while sending the thank-you email.");
+  }
+}
 
   return (
     <div
@@ -405,10 +435,23 @@ const handleBodyCopy = async () => {
           <label className={labelCss}>{contactUsData[3]}</label>
         </div>
 
+        <div className="flex justify-start w-full gap-7">
         {/* Submit */}
+        
+          {location === "/finalizeEmail/humanRights" && 
+            <button 
+              className={`${btnCss} text-black leading-[clamp(1.2rem,2vw,4rem)] text-[clamp(1.2rem,2vw,4rem)] border border-black ${isThirdButtonClicked? "bg-[#266247] text-white border-none":"bg-white"}`} 
+              style={{width: "fit-content"}}
+              onClick={async () => {
+                setIsThirdButtonClicked(true)
+                await sendThankYouEmail(useremail, username);
+              }}>Done</button> 
+          }
+
           <button
             type="button"
             name="submitBtn"
+            style={{width: location=== "/finalizeEmail/humanRights"?"fit-content":"100%"}}
             onClick={async (e) => {
               e.preventDefault(); // safety against unwanted form submit
 
@@ -423,7 +466,7 @@ const handleBodyCopy = async () => {
           >
             {button2}
           </button>
-
+        </div>
       </form>
 
       {/* MAIL APP POPUP */}
