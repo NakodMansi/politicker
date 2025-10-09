@@ -25,7 +25,7 @@ export default function ContactUs({
   const labelCss =
     "text-[#4E4E4E] font-palanquin text-[clamp(0.8rem,2vw,3rem)] leading-[clamp(1.5rem,2vw,3rem)]";
   const btnCss =
-    "p-[9.5px] text-[clamp(1.2rem,2vw,4rem)] leading-[clamp(1.2rem,2vw,4rem)] rounded-[10px] w-full md:p-4 md:w-[236px]";
+    "p-[9.5px] text-[#FFF] text-[clamp(1.2rem,2vw,4rem)] leading-[clamp(1.2rem,2vw,4rem)] rounded-[10px] w-full md:p-4 md:w-[236px]";
 
   // STATE
   const [formData, setFormData] = useState({
@@ -36,7 +36,9 @@ export default function ContactUs({
   const [showEmailMsg, setShowEmailMsg] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
   const [step, setStep] = useState(1);
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [isFirstButtonClicked, setIsFirstButtonClicked] = useState(false);
+  const [isSecondButtonClicked, setIsSecondButtonClicked] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(null);
 
   // Mail popup state
   const [showMailOptions, setShowMailOptions] = useState(false);
@@ -77,42 +79,54 @@ export default function ContactUs({
 
   // COPY HANDLERS
   const handleEmailCopy = async () => {
-    if (!inputValues || !inputValues[selectedTemplate]) return;
-    const template = inputValues[selectedTemplate];
-    const emails = Array.isArray(template.emails)
-      ? template.emails.join(", ")
-      : template.emails.replace(/,/g, "");
-    try {
-      await navigator.clipboard.writeText(`${emails.trim()}`);
-      alert("Please paste it in bcc");
-    } catch (err) {
-      console.error("Failed to copy:", err);
-    }
-  };
+  if (typeof navigator === "undefined") return; // check if in browser
+  if (!inputValues || !inputValues[selectedTemplate]) return;
 
-  const handleSubjectCopy = async () => {
-    if (!inputValues || !inputValues[selectedTemplate]) return;
-    const template = inputValues[selectedTemplate];
-    try {
-      await navigator.clipboard.writeText(`${template.subject}`);
-      alert("Please paste it in subject");
-    } catch (err) {
-      console.error("Failed to copy:", err);
-    }
-  };
+  const template = inputValues[selectedTemplate];
+  const emails = Array.isArray(template.emails)
+    ? template.emails.join(", ")
+    : template.emails.replace(/,/g, "");
 
-  const handleBodyCopy = async () => {
-    if (!inputValues || !inputValues[selectedTemplate]) return;
-    const template = inputValues[selectedTemplate];
-    const body = template.body.replace("{Ihr Unterstützend username}", username);
+  try {
+    await navigator.clipboard.writeText(emails.trim());
+    alert("Please paste it in bcc");
+  } catch (err) {
+    console.error("Failed to copy:", err);
+    alert("Clipboard copy failed. Please copy manually.");
+  }
+};
 
-    try {
-      await navigator.clipboard.writeText(body);
-      alert("Please paste it in body");
-    } catch (err) {
-      console.error("Failed to copy:", err);
-    }
-  };
+const handleSubjectCopy = async () => {
+  if (typeof navigator === "undefined") return;
+  if (!inputValues || !inputValues[selectedTemplate]) return;
+
+  const template = inputValues[selectedTemplate];
+
+  try {
+    await navigator.clipboard.writeText(template.subject);
+    alert("Please paste it in subject");
+  } catch (err) {
+    console.error("Failed to copy:", err);
+    alert("Clipboard copy failed. Please copy manually.");
+  }
+};
+
+const handleBodyCopy = async () => {
+  if (typeof navigator === "undefined") return;
+  if (!inputValues || !inputValues[selectedTemplate]) return;
+
+  const template = inputValues[selectedTemplate];
+  const body = template.body.replace("{Ihr Unterstützend username}", username);
+
+  try {
+    await navigator.clipboard.writeText(body);
+    alert("Please paste it in body");
+  } catch (err) {
+    console.error("Failed to copy:", err);
+    alert("Clipboard copy failed. Please copy manually.");
+  }
+};
+
 
   // MAIL APP FUNCTIONS
   const getMailLinks = (index) => {
@@ -147,8 +161,8 @@ export default function ContactUs({
       },
       {
         name: "Default Mail",
-        appUrl: `mailto:${emailStr}?subject=${encodedSubject}&body=${encodedBody}`,
-        webUrl: `mailto:${emailStr}?subject=${encodedSubject}&body=${encodedBody}`,
+        appUrl: `mailto:?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
+        webUrl: `mailto:?bcc=${emailStr}&subject=${encodedSubject}&body=${encodedBody}`,
       },
     ];
   };
@@ -236,7 +250,7 @@ export default function ContactUs({
               className={inputFieldCss}
               value={formData.email}
               onChange={handleChange}
-              readonly
+              readOnly
             />
             <label className={labelCss}>{contactUsData[1]}</label>
           </div>
@@ -255,11 +269,11 @@ export default function ContactUs({
             </p>
             <button
               type="button"
-              className={`${btnCss} ${isButtonClicked? "bg-[#5F0808]":"bg-[#941010] text-[#FFF]"}`}
+              className={`${btnCss} ${isFirstButtonClicked? "bg-[#5F0808]":"bg-[#941010]"}`}
               onClick={() => {
                 setSelectedTemplate(templateNo ? parseInt(templateNo) : 0);
                 openMailPopup();
-                setIsButtonClicked(true);
+                setIsFirstButtonClicked(true);
               }}
             >
               open filled template in mail app
@@ -320,7 +334,7 @@ export default function ContactUs({
                     : inputValues[selectedTemplate].emails.replace(/,/g, ";")
                   : formData.email
               }
-              readonly
+              readOnly
               onChange={handleChange}
             />
 
@@ -348,7 +362,7 @@ export default function ContactUs({
               value={
                 inputValues?.[selectedTemplate]?.subject || formData.subject
               }
-              readonly
+              readOnly
               onChange={handleChange}
             />
             {showCopyImage && (
@@ -375,7 +389,7 @@ export default function ContactUs({
               inputValues?.[selectedTemplate]?.body.replace("{Ihr Unterstützend username}", username) || formData.message
             }
             onChange={handleChange}
-            readonly
+            readOnly
             style={{ flex: windowWidth < 769 ? 0 : 1 }}
           />
           {showCopyImage && (
@@ -403,9 +417,9 @@ export default function ContactUs({
               } else {
                 window.location.href = `/finalizeEmail/${nextPage}?username=${username}&useremail=${useremail}`;
               }
-              setIsButtonClicked(true);
+              setIsSecondButtonClicked(true);
             }}
-            className={`${btnCss} ${isButtonClicked? "bg-[#5F0808]":"bg-[#941010] text-[#FFF]"}`}
+            className={`${btnCss} ${isSecondButtonClicked? "bg-[#5F0808]":"bg-[#941010] text-[#FFF]"}`}
           >
             {button2}
           </button>
@@ -421,8 +435,8 @@ export default function ContactUs({
               <button
                 key={idx}
                 type="button"
-                className={`px-4 py-2 rounded-md text-center ${isButtonClicked? "bg-[#5F0808]":"bg-[#941010] text-[#FFF]"}`}
-                onClick={() => {openMailApp(link.appUrl, link.webUrl), setIsButtonClicked(true)}}
+                className={`px-4 py-2 rounded-md text-[#FFF] text-center ${isButtonClicked === idx? "bg-[#5F0808]":"bg-[#941010] text-[#FFF]"}`}
+                onClick={() => { setIsButtonClicked(idx);openMailApp(link.appUrl, link.webUrl);}}
               >
                 {link.name}
               </button>
