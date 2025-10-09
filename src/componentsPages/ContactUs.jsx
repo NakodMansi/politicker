@@ -195,13 +195,13 @@ const handleBodyCopy = async () => {
       const data = await res.json();
 
       if (res.ok) {
-        console.log("✅ Reminder email sent successfully!");
+        alert("✅ Reminder email sent successfully!");
       } else {
-        console.log(`❌ Failed to send email: ${data.error || "Unknown error"}`);
+        alert(`❌ Failed to send email: ${data.error || "Unknown error"}`);
       }
     } catch (error) {
       console.error("Error sending email:", error);
-      console.log("❌ Something went wrong while sending the email.");
+      alert("❌ Something went wrong while sending the email.");
     }
   }
 
@@ -220,13 +220,13 @@ const handleBodyCopy = async () => {
     const data = await res.json();
 
     if (res.ok) {
-      console.log("Thank-you email sent successfully!");
+      alert("Thank-you email sent successfully!");
     } else {
-      console.log(`Failed to send thank-you email: ${data.error || "Unknown error"}`);
+      alert(`Failed to send thank-you email: ${data.error || "Unknown error"}`);
     }
   } catch (error) {
     console.error("Error sending thank-you email:", error);
-    console.log("Something went wrong while sending the thank-you email.");
+    alert("Something went wrong while sending the thank-you email.");
   }
 }
 
